@@ -1,0 +1,17 @@
+Name In Simulation	Label in manuscript
+aptHaa	A1
+aptOwe	A2
+aptRow	A3
+casCas	B1
+droNov	B2
+rheAme	C1
+rhePen	C2
+cryCin	E1
+tinGut	E2
+eudEle	E3
+notPer	E4
+anoDid	D1
+strCam	F1
+halLeu	O1
+nipNip	O2
+galGal	O3
