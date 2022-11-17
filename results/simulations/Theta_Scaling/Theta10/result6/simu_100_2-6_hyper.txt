@@ -1,0 +1,2 @@
+iter	nprior_a	nprior_b	cprior_a	cprior_b	prior_l_a	prior_l_b	prior_g_a	prior_g_b
+0	10	0.2	5	0.04	1	1	1	1
