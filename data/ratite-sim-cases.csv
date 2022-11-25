@@ -1,0 +1,14 @@
+node,clade,node.type,branch.length,label,Case 2,Case 3,Case 4,Case 5,Case 6,case3.targets.1,case3.targets.2,case3.targets.3,case4.targets.1,case4.targets.2,case4.targets.3,case2.targets.1,case2.targets.2,case2.targets.3
+1,A,tip,1,K,Y,Y,Y,N,Y,Y,Y,Y,Y,Y,Y,Y,Y,Y
+2,B,tip,1,EC,N,Y,Y,N,Y,Y,Y,N,Y,Y,Y,N,Y,N
+3,C,tip,2,R,Y,N,Y,Y,Y,N,Y,N,Y,Y,Y,Y,Y,N
+4,D,tip,2,M,N,N,Y,Y,N,N,N,N,Y,Y,N,N,N,N
+5,E,tip,2,T,N,N,N,N,N,N,N,N,N,Y,N,N,N,N
+6,F,tip,4,O,N,N,Y,Y,N,N,N,N,Y,Y,N,N,N,N
+7,O,tip,5,Out,N,N,N,N,N,N,N,N,N,N,N,N,N,N
+8,B;A;D;F;O;C;E,ROOT,NA,NA,N,N,N,N,N,N,N,N,N,Y,N,N,N,N
+9,B;A;D;F;C;E,internal,1,NA,N,N,N,N,N,N,N,N,N,Y,N,N,N,N
+10,B;A;D;C;E,internal,1,NA,N,N,N,N,N,N,N,N,N,Y,N,N,N,N
+11,B;A;C,internal,1,NA,N,N,Y,N,Y,N,Y,N,Y,Y,Y,N,Y,N
+12,B;A,internal,1,NA,N,Y,Y,N,Y,N,Y,N,Y,Y,Y,N,Y,N
+13,D;E,internal,NA,NA,N,N,N,N,N,N,N,N,N,Y,N,N,N,N
