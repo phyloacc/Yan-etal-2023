@@ -1,7 +1,7 @@
 ############################################################
-# For rodent genomes
-# Figure 5
-# Gregg Thomas
+# For PhyloAcc
+# Figure 3
+# Han Yan and Gregg Thomas
 ############################################################
 
 this.dir <- dirname(parent.frame(2)$ofile)
@@ -16,25 +16,26 @@ library(dplyr)
 #library(ggsignif)
 #library(pROC)
 library(PRROC)
-
 library(here)
 source(here("scripts", "lib", "design.r"))
 
-############################################################
-
-#calcPR <- function(chrome, dists, window_size, max_dist_mb){
-
 
 ############################################################
-
-
-results = NULL
-
-# read in data
 
 simdir = here("results", "simulations", "Simu1")
 # The directory with the simulation files named according to
 # case
+
+save_fig = T
+# Whether or not to save the final figure
+
+# Options
+############################################################
+
+cat(as.character(Sys.time()), " | Fig3: Reading simulation data from ", simdir, "\n")
+
+results = NULL
+# Initialize the results df
 
 for(f in list.files(simdir, pattern="elemLik"))
 {
@@ -79,6 +80,8 @@ results$ID2 = results$ID %% 100
 # Read the input data
 ######################
 
+cat(as.character(Sys.time()), " | Fig3: Labeling simulation cases\n")
+
 m0 = subset(results, case == 'trueM0')
 m0 = select(m0, -c("case"))
 
@@ -88,6 +91,8 @@ full = data.table(full)
 
 # Label the truem0 cases and merge by ID2
 ######################
+
+cat(as.character(Sys.time()), " | Fig3: Calculating PR and AUPRC\n")
 
 vars = list("method"=levels(as.factor(full$method)), "case"=levels(as.factor(full$case)), "input"=levels(as.factor(full$input)))
 var_combos = expand.grid(vars)
@@ -105,6 +110,7 @@ for(i in 1:nrow(var_combos)){
   cur_input = as.character(var_combos[[3]][i])
   # Loop over all combinations of method, case, and input
 
+  cat(as.character(Sys.time()), " | -------> ", cur_method, " - ", cur_case, " - ", cur_input, "\n")
   
   cur_data = subset(full, method==cur_method & case==cur_case & input==cur_input)
   # Subset the data for the current method, case, and input
@@ -133,24 +139,38 @@ for(i in 1:nrow(var_combos)){
       # Add the result to the prs df
     }
   }
-  
 }
 
+# Calculate PR curves and AUPRC
+######################
 
-plot_cases = data.frame("case"=c('trueCase2', 'trueCase2', 'trueCase3', 'trueCase4'), "input"=c('inputCase2', 'inputCase4', 'inputCase3', 'inputCase4'))
+cat(as.character(Sys.time()), " | Fig3: Generating plots\n")
+
+#plot_cases = data.frame("case"=c('trueCase2', 'trueCase2', 'trueCase3', 'trueCase4'), "input"=c('inputCase2', 'inputCase4', 'inputCase3', 'inputCase4'))
+plot_cases = data.frame("case"=c('trueCase3', 'trueCase2', 'trueCase4', 'trueCase2'),
+                        "input"=c('inputCase3', 'inputCase2', 'inputCase4', 'inputCase4'))
+# The cases to plot
+
+titles = c("Single acceleration\n\n", "Two independent\naccelerations\n", "Three independent\naccelerations\n", "Two independent\naccelerations with extra\ntarget lineages specified")
 
 auprc_list = list()
 prc_list = list()
+# Lists to add figure grobs to
 
 pr_ratio = 50
+# The ratio at which to plot PR curves
 
 for(i in 1:nrow(plot_cases)){
+  cat(as.character(Sys.time()), " | -------> ", plot_cases[i,]$case, " - ", plot_cases[i,]$input, "\n")
+  
   cur_pr = subset(prs, case == plot_cases[i,]$case & input == plot_cases[i,]$input)
+  # For every scenario to plot, subset the pr data based on case and input
   
   p = ggplot(cur_pr, aes(x=ratio, y=auprc, color=method)) +
     geom_point(size=2) + 
     geom_line(size=1) +
     scale_y_continuous(limits=c(0.7,1,by=0.1)) +
+    ggtitle(titles[i]) +
     xlab("") +
     ylab("") +
     scale_color_manual("Method", labels=c("Species tree", "Gene tree"), values=corecol(pal="wilke", numcol=2)) +
@@ -158,19 +178,31 @@ for(i in 1:nrow(plot_cases)){
     theme(legend.position="none",
           axis.text.x=element_text(angle=40, hjust=1, size=10),
           axis.title.y=element_text(size=10),
+          plot.title=element_text(hjust=0.5, size=8),
           plot.margin=margin(0.5,0.1,0,0.1, unit="cm"))
+  # Generate the AUPRC
   
   if(i==1){
     p = p + ylab("AUPRC")
   }
+  # For the first plot, add a title to the Y-axis
+  
+  if(i==4){
+    p = p + theme(plot.title=element_text(vjust=3))
+  }
   
   auprc_list[[i]] = p
+  # Add the plot to the list of figures
+  
+  # Generate the AUPRC plot for the current scenario
+  ##########
   
   cur_pr = subset(cur_pr, ratio == pr_ratio)
   
   p = ggplot(cur_pr, aes(x=r, y=p, color=method)) +
     #geom_point(size=2) + 
     geom_line(size=1) +
+    #ggtitle("\n\n") +
     xlab("") +
     ylab("") +
     scale_color_manual("Method", labels=c("Species tree", "Gene tree"), values=corecol(pal="wilke", numcol=2)) +
@@ -179,76 +211,59 @@ for(i in 1:nrow(plot_cases)){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=10),
+          #axis.text.y=element_text(size=8),
           axis.title.y=element_text(size=10),
-          plot.margin=margin(0.5,0.1,0,0.1, unit="cm"))
-  
+          plot.title=element_text(hjust=0.5, size=8),
+          plot.margin=margin(0.5,0.1,0,0, unit="cm"))
+  # Render the PR curve
+
   if(i==1){
     p = p + ylab("Precision")
     p = p + theme(legend.position="bottom")
     fig_leg = get_legend(p)
     p = p + theme(legend.position="none")
   }
+  # For the first plot, add a title to the y-axis, and get the legend to add back in later
   
   prc_list[[i]] = p
+  # Add the plot to the list of figures
+  
+  # Generate the PR plot for the current scenario
+  ##########
 }
-#print(p)
+
+# Generate the plots for specified scenarios
+######################
+
+cat(as.character(Sys.time()), " | Fig3: Combining plots\n")
 
 fig_top = plot_grid(plotlist=auprc_list, ncol=4, labels=c("A", "B", "C", "D")) +
-  draw_label("Ratio of M0:M1 loci", x=0.5, y=0.05, vjust=-0.5, angle=0, size=10)
+  draw_label("Ratio of non-accelerated to accelerated loci", x=0.5, y=0.05, vjust=-0.5, angle=0, size=10)
+# Combine AUPRC plots with a single, shared x-axis title
 
 fig_bot = plot_grid(plotlist=prc_list, ncol=4, labels=c("", "", "", "")) +
   draw_label("Recall", x=0.5, y=0.05, vjust=-0.5, angle=0, size=10)
+# Combine PR plots with a single, shared x-axis title
 
-fig_main = plot_grid(fig_top, fig_bot, nrow=2)
+fig_main = plot_grid(fig_top, fig_bot, nrow=2, rel_heights=c(1,0.87), align='vh')
+# Combine plots
 
 fig = plot_grid(fig_main, fig_leg, nrow=2, rel_heights=c(1,0.1))
+# Add legend
 
-save_fig = T
+# Combine the plots into the final figure
+######################
+
 if(save_fig){
   figfile = "../figs/fig3.png"
   cat(as.character(Sys.time()), " | Fig3: Saving figure:", figfile, "\n")
-  ggsave(filename=figfile, fig, width=7.5, height=4, units="in")
+  ggsave(filename=figfile, fig, width=7.5, height=5, units="in")
 }
-# Save figure
 
-# plot AUPRC
-prs = prs[ (prs$case == 'trueCase2' & prs$input == 'inputCase2') | (prs$case == 'trueCase2' & prs$input == 'inputCase4') | 
-             (prs$case == 'trueCase3' & prs$input == 'inputCase3') |  (prs$case == 'trueCase4' & prs$input == 'inputCase4') ,]
+# Save the figure
+######################
 
 
-p = ggplot() + geom_line(data = prs2, aes(x = ratio, y = AUPRC, color = method)) +
-  facet_wrap(vars(input,case), nrow=2, ncol=2,  scales="fixed") + 
-  #facet_grid(rows=vars(case), cols = vars(input),  space="fixed")  + 
-  bartheme()
-
-print(p)
-
-
-
-
-
-
-
-# prs2 = full[, {
-#   list("AUPRC" = sapply(c(1,10,20,50,70,100), function(x) {
-#     print(paste(method, case, input))
-#     print(length(logBF1.x))
-#     print(x)
-#     xx = unique(logBF1.x)
-#     ly = length(logBF1.y)
-#     lx = length(xx)
-#     
-#     #print(ly)
-#     #print(lx)
-#     if(x <= ly/lx)
-#     {
-#       pr.curve(xx, logBF1.y[1:(x * lx)])$auc.davis.goadrich
-#     }else{
-#       pr.curve(xx, rep(logBF1.y, x * lx/ly))$auc.davis.goadrich
-#     }
-#   }),
-#   "ratio" = c(1,10,20,50,70,100))
-# }, by = c('method', 'case', 'input')]
 
 
 
