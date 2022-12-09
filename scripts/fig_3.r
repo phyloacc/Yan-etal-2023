@@ -7,14 +7,12 @@
 this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 
+############################################################
+
 library(ggplot2)
 library(cowplot)
 library(data.table)
 library(dplyr)
-#library(tidyr)
-#library(ggbeeswarm)
-#library(ggsignif)
-#library(pROC)
 library(PRROC)
 library(here)
 source(here("scripts", "lib", "design.r"))
@@ -26,7 +24,7 @@ simdir = here("results", "simulations", "Simu1")
 # The directory with the simulation files named according to
 # case
 
-save_fig = T
+save_fig = F
 # Whether or not to save the final figure
 
 # Options
@@ -146,7 +144,6 @@ for(i in 1:nrow(var_combos)){
 
 cat(as.character(Sys.time()), " | Fig3: Generating plots\n")
 
-#plot_cases = data.frame("case"=c('trueCase2', 'trueCase2', 'trueCase3', 'trueCase4'), "input"=c('inputCase2', 'inputCase4', 'inputCase3', 'inputCase4'))
 plot_cases = data.frame("case"=c('trueCase3', 'trueCase2', 'trueCase4', 'trueCase2'),
                         "input"=c('inputCase3', 'inputCase2', 'inputCase4', 'inputCase4'))
 # The cases to plot
@@ -169,7 +166,7 @@ for(i in 1:nrow(plot_cases)){
   p = ggplot(cur_pr, aes(x=ratio, y=auprc, color=method)) +
     geom_point(size=2) + 
     geom_line(size=1) +
-    scale_y_continuous(limits=c(0.7,1,by=0.1)) +
+    scale_y_continuous(limits=c(0,1,by=0.1)) +
     ggtitle(titles[i]) +
     xlab("") +
     ylab("") +
@@ -251,11 +248,13 @@ fig_main = plot_grid(fig_top, fig_bot, nrow=2, rel_heights=c(1,0.87), align='vh'
 fig = plot_grid(fig_main, fig_leg, nrow=2, rel_heights=c(1,0.1))
 # Add legend
 
+print(fig)
+
 # Combine the plots into the final figure
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig3.png"
+  figfile = "../figs/fig3.pdf"
   cat(as.character(Sys.time()), " | Fig3: Saving figure:", figfile, "\n")
   ggsave(filename=figfile, fig, width=7.5, height=5, units="in")
 }

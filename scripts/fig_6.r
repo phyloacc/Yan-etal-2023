@@ -11,23 +11,11 @@ library(ggplot2)
 library(cowplot)
 library(data.table)
 library(dplyr)
-library(ape)
-#library(tidyr)
-#library(ggbeeswarm)
-#library(ggsignif)
-#library(pROC)
-#library(PRROC)
+library(ggbeeswarm)
+library(stringr)
 library(here)
 source(here("scripts", "lib", "design.r"))
 source(here("scripts", "lib", "read_results.r"))
-
-## KEY
-## nameLabel -> node_labels
-## birdname -> label_map
-## namePrint -> new_node_labels
-## caseLabel -> scenarios
-## elem_Acc -> st_elem
-## elem_GT -> gt_elem
 
 ############################################################
 
@@ -39,7 +27,7 @@ node_labels = c("aptHaa","aptOwe", "aptRow","casCas","droNov","rheAme","rhePen",
                 "aptHaa.aptOwe", "aptHaa.aptRow","casCas.droNov","aptHaa.casCas", "rheAme.rhePen","aptHaa.rheAme","cryCin.tinGut",
                 "eudEle.notPer","cryCin.eudEle","cryCin.anoDid", "aptHaa.cryCin","aptHaa.strCam")
 
-save_fig = T
+save_fig = F
 
 # Setup
 ############################################################
@@ -49,15 +37,11 @@ cat(as.character(Sys.time()), " | Fig4: Adjsuting node labels...\n")
 new_node_labels = adjustLabels(label_map_file, node_labels)
 
 ## Re-label the nodes based on the simulation letters
-######################
+############################################################
 
 cat(as.character(Sys.time()), " | Fig4: Assigning target lineages...\n")
 
-assign_targets_result = assignTargets(new_node_labels)
-target = assign_targets_result[[1]]
-nontarget = assign_targets_result[[2]]
-target_B = assign_targets_result[[3]]
-nontarget_B = assign_targets_result[[4]]
+case_targets = assignTargets(node_labels, new_node_labels)
 
 ## Assign target lineages
 ############################################################
@@ -71,6 +55,7 @@ target_sets = c(3, 4, 3)
 file_labels = c("NC_true5spec8", "trueC4inputC2", "NC_true5spec4")
 panel_labels = c("A", "B", "C")
 # Initialize scenario variables and names...
+
 
 input_targets = list(c("A1", "A2", "A3", "(A1,A2)", "(A1,A3)", "C1", "C2", "(C1,C2)"),
                      c("A1", "A2", "A3", "C1", "C2", "(A1,A2)", "(A1,A3)", "(C1,C2)"),
@@ -87,11 +72,15 @@ non_target_x_col = list(c("red", "red", "black", "black", "black", "black", "bla
 # this with the data I have...
 
 titles = c("Scenario 1", "Scenario 2", "Scenario 3")
+# Titles for plots
 
 p_list = list()
 # A list in which to save the generated boxplots
 
 for(s in scenarios){
+  
+  cur_case_targets = case_targets[[target_sets[s]]]
+  # Look up the current set of target and non-target lineages
   
   cat(as.character(Sys.time()), " | ------->", scenarios[s], ": Reading likelihood files\n")
   
@@ -129,7 +118,6 @@ for(s in scenarios){
   st_m2_postz_file = here(st_dir, m2_postz_file)
   # Prob file paths for st
   
-  #st_elem_lik_scenario = subset(st_elem_lik, No. == scenarios[c])
   st_opt_postz = readPostZ(st_m1_postz_file, st_m2_postz_file, st_elem_lik)
   
   # Read st results
@@ -141,7 +129,6 @@ for(s in scenarios){
   gt_m2_postz_file = here(gt_dir, m2_postz_file)
   # Prob file paths for gt
   
-  #gt_elem_lik_scenario = subset(gt_elem_lik, No. == scenarios[c])
   gt_opt_postz = readPostZ(gt_m1_postz_file, gt_m2_postz_file, gt_elem_lik)
   
   # Read gt results
@@ -149,25 +136,21 @@ for(s in scenarios){
   
   cat(as.character(Sys.time()), " | ------->", scenarios[s], ": Adjusting columns\n")
   
-  adjust_cols_result = adjustCols(st_opt_postz, gt_opt_postz, target[[target_sets[s]]], node_labels, new_node_labels)
+  adjust_cols_result = adjustCols(st_opt_postz, gt_opt_postz, node_labels, new_node_labels)
   st_opt_postz = adjust_cols_result[[1]]
   gt_opt_postz = adjust_cols_result[[2]]
-  targ_ind = adjust_cols_result[[3]]
   
   # Organize column names
   ############################################################
-  
-  #col1_leaf = c(rep(2,3),rep(1,2),rep(2,2),rep(1,2))
-  #col1_inter = c(rep(2,2),rep(1,6),2,rep(1,7))
-  
+
   cat(as.character(Sys.time()), " | ------->", scenarios[s], ": Converting target lineages to long data\n")
   
-  st_targ = st_opt_postz[,targ_ind]
+  st_targ = select(st_opt_postz, cur_case_targets[["targets"]]$new.labels)
   st_targ_long = reshape2::melt(st_targ)
   st_targ_long$Method = "PhyloAcc"
   # Convert from wide to long for st target branches and add a label for Metho
   
-  gt_targ = gt_opt_postz[,targ_ind]
+  gt_targ = select(gt_opt_postz, cur_case_targets[["targets"]]$new.labels)
   gt_targ_long = reshape2::melt(gt_targ)
   gt_targ_long$Method = "PhyloAcc-GT"
   # Convert from wide to long for gt target branches and add a label for Metho
@@ -181,12 +164,12 @@ for(s in scenarios){
   
   cat(as.character(Sys.time()), " | ------->", scenarios[s], ": Converting non-target lineages to long data\n")
   
-  st_non_targ_long = st_opt_postz[,-targ_ind]
+  st_non_targ_long = select(st_opt_postz, cur_case_targets[["non.targets"]]$new.labels)
   st_non_targ_long = reshape2::melt(st_non_targ_long)
   st_non_targ_long$Method = "PhyloAcc"
   # Convert from wide to long for st target branches and add a label for Metho
   
-  gt_non_targ_long = gt_opt_postz[,-targ_ind]
+  gt_non_targ_long = select(gt_opt_postz, cur_case_targets[["non.targets"]]$new.labels)
   gt_non_targ_long = reshape2::melt(gt_non_targ_long)
   gt_non_targ_long$Method = "PhyloAcc-GT"
   # Convert from wide to long for gt target branches and add a label for Metho
@@ -226,7 +209,7 @@ for(s in scenarios){
   }
   # Get the legend from the first plot
   
-  print(target_p)
+  #print(target_p)
   # Targets
   #####
   
@@ -248,10 +231,9 @@ for(s in scenarios){
           axis.title.y=element_text(size=12),
           plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
   
-  print(non_target_p)
+  #print(non_target_p)
   # Non-targets
   #####
-  
   
   p_title = ggdraw() + 
     draw_label(
@@ -265,9 +247,10 @@ for(s in scenarios){
       # so title is aligned with left edge of first plot
       plot.margin = margin(0, 0, 0, 0)
     )
+  # Current row title
+  
   p_combo = plot_grid(target_p, non_target_p, ncol=2)
   p_panel = plot_grid(p_title, p_combo, nrow=2, labels=c(panel_labels[[s]], ""), label_y=1, rel_heights=c(0.2,1))
-  print(p_panel)
   p_list[[panel_labels[s]]] = p_panel
   # Combine the target and non-target plots
   
@@ -279,13 +262,14 @@ cat(as.character(Sys.time()), " | Fig6: Combining plots...\n")
 
 fig_main = plot_grid(plotlist=p_list[c("A", "B", "C")], nrow=3)
 fig = plot_grid(fig_main, fig_legend, nrow=2, rel_heights=c(1, 0.1))
+print(fig)
 # Combine the panels and the legend
 
 # Combine the plots
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig6.png"
+  figfile = "../figs/fig6.pdf"
   cat(as.character(Sys.time()), " | Fig6: Saving figure:", figfile, "\n")
   ggsave(filename=figfile, fig, width=8, height=8, units="in")
 }

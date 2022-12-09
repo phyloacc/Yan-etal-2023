@@ -1,0 +1,63 @@
+genus,species,species.name,s.name,common.name,common.short,label,genome
+Homo,sapiens,Homo sapiens,H. sapiens,Human,Human,hg38,GRCh37/hg19
+Pan,troglodytes,Pan troglodytes,P. troglodytes,Chimp,Chimp,panTro4,CSAC 2.1.4/panTro4
+Gorilla,gorilla,Gorilla gorilla gorilla,G. gorilla,Gorilla,Gorilla,gorGor3,gorGor3.1/gorGor3
+Pongo,pygmaeus abelii,Pongo pygmaeus abelii,P. pygmaeus abelii,Orangutan,Orangutan,ponAbe2,WUGSC 2.0.2/ponAbe2
+Nomascus,leucogenys,Nomascus leucogenys,N. leucogenys,Gibbon,Gibbon,nomLeu3,GGSC Nleu3.0/nomLeu3
+Macaca,mulatta,Macaca mulatta,R. mulatta,Rhesus,Rhesus,rheMac3,BGI CR_1.0/rheMac3
+Macaca,fascicularis,Macaca fascicularis,M. fascicularis,Crab-eating macaque,macaque,macFas5,Macaca_fascicularis_5.0/macFas5
+Papio,hamadryas,Papio hamadryas,P. hamadryas,Baboon,Baboon,papAnu2,Baylor Pham_1.0/papHam1
+Chlorocebus,sabaeus,Chlorocebus sabaeus,C. sabaeus,Green monkey,Green monkey,chlSab2,Chlorocebus_sabeus 1.0/chlSab1
+Callithrix,jacchus,Callithrix jacchus,C. jacchus,Marmoset,Marmoset,calJac3,WUGSC 3.2/calJac3
+Saimiri,boliviensis,Saimiri boliviensis,S. boliviensis,Squirrel monkey,Squirrel monkey,saiBol1,Broad/saiBol1
+Otolemur,garnettii,Otolemur garnettii,O. garnettii,Bushbaby,Bushbaby,otoGar3,Broad/otoGar3
+Tupaia,chinensis,Tupaia chinensis,T. chinensis,Chinese tree shrew,Tree shrew,tupChi1,TupChi_1.0/tupChi1
+Spermophilus,tridecemlineatus,Spermophilus tridecemlineatus,S. tridecemlineatus,Squirrel,Squirrel,speTri2,Broad/speTri2
+Jaculus,jaculus,Jaculus jaculus,J. jaculus,Lesser Egyptian jerboa,Jerboa,jacJac1,JacJac1.0/jacJac1
+Microtus,ochrogaster,Microtus ochrogaster,M. ochrogaster,Prairie vole,Prairie vole,micOch1,MicOch1.0/micOch1
+Cricetulus,griseus,Cricetulus griseus,C. griseus,Chinese hamster,Chinese hamster,criGri1,C_griseus_v1.0/criGri1
+Mesocricetus,auratus,Mesocricetus auratus,M. auratus,Golden hamster,Golden hamster,mesAur1,MesAur1.0/mesAur1
+Mus,musculus,Mus musculus,M. musculus,Mouse,Mouse,mm10,GRCm38/mm10
+Rattus,norvegicus,Rattus norvegicus,R. norvegicus,Rat,Rat,rn6,RGSC 5.0/rn5
+Heterocephalus,glaber,Heterocephalus glaber,H. glaber,Naked mole-rat,Naked mole-rat,hetGla2,Broad HetGla_female_1.0/hetGla2
+Cavia,porcellus,Cavia porcellus,C. porcellus,Guinea pig,Guinea pig,cavPor3,Broad/cavPor3
+Chinchilla,lanigera,Chinchilla lanigera,C. lanigera,Chinchilla,Chinchilla,chiLan1,ChiLan1.0/chiLan1
+Octodon,degus,Octodon degus,O. degus,Brush-tailed rat,Brush-tailed rat,octDeg1,OctDeg1.0/octDeg1
+Oryctolagus,cuniculus,Oryctolagus cuniculus,O. cuniculus,Rabbit,Rabbit,oryCun2,Broad/oryCun2
+Ochotona,princeps,Ochotona princeps,O. princeps,Pika,Pika,ochPri3,OchPri3.0/ochPri3
+Sus,scrofa,Sus scrofa,S. scrofa,Pig,Pig,susScr3,SGSC Sscrofa10.2/susScr3
+Vicugna,pacos,Vicugna pacos,V. pacos,Alpaca,Alpaca,vicPac2,Vicugna_pacos-2.0.1/vicPac2
+Camelus,ferus,Camelus ferus,C. ferus,Bactrian camel,Camel,camFer1,CB1/camFer1
+Tursiops,truncatus,Tursiops truncatus,T. truncatus,Dolphin,Dolphin,turTru2,Baylor Ttru_1.4/turTru2
+Orcinus,orca,Orcinus orca,O. orca,Killer whale,Killer whale,orcOrc1,Oorc_1.1/orcOrc1
+Pantholops,hodgsonii,Pantholops hodgsonii,P. hodgsonii,Tibetan antelope,Tibetan antelope,panHod1,PHO1.0/panHod1
+Bos,taurus,Bos taurus,B. taurus,Cow,Cow,bosTau8,Baylor Btau_4.6.1/bosTau7
+Ovis,aries,Ovis aries,O. aries,Sheep,Sheep,oviAri3,ISGC Oar_v3.1/oviAri3
+Capra,hircus,Capra hircus,C. hircus,Domestic goat,Goat,capHir1,CHIR_1.0/capHir1
+Equus,caballus,Equus caballus,E. caballus,Horse,Horse,equCab2,Broad/equCab2
+Ceratotherium,simum,Ceratotherium simum,C. simum,White rhinoceros,Rhinoceros,cerSim1,CerSimSim1.0/cerSim1
+Felis,catus,Felis catus,F. catus,Cat,Cat,felCat8,ICGSC Felis_catus 6.2/felCat5
+Canis,lupus familiaris,Canis lupus familiaris,C. lupus familiaris,Dog,Dog,canFam3,Broad CanFam3.1/canFam3
+Mustela,furo,Mustela putorius furo,M. furo,Ferret,Ferret,musFur1,MusPutFur1.0/musFur1
+Ailuropoda,melanoleuca,Ailuropoda melanoleuca,A. melanoleuca,Panda,Panda,ailMel1,BGI-Shenzhen 1.0/ailMel1
+Odobenus,rosmarus divergens,Odobenus rosmarus divergens,O. rosmarus divergens,Pacific walrus,Walrus,odoRosDiv1,Oros_1.0/odoRosDiv1
+Leptonychotes,weddellii,Leptonychotes weddellii,L. weddellii,Weddell seal,Seal,lepWed1,LepWed1.0/lepWed1
+Pteropus,alecto,Pteropus alecto,P. alecto,Black flying-fox,Flying-fox,pteAle1,ASM32557v1/pteAle1
+Pteropus,vampyrus,Pteropus vampyrus,P. vampyrus,Megabat,Megabat,pteVam1,Broad/pteVam1
+Myotis,davidii,Myotis davidii,M. davidii,Davids myotis bat,Myotis bat,myoDav1,ASM32734v1/myoDav1
+Myotis,lucifugus,Myotis lucifugus,M. lucifugus,Microbat,Microbat,myoLuc2,Broad Institute Myoluc2.0/myoLuc2
+Eptesicus,fuscus,Eptesicus fuscus,E. fuscus,Big brown bat,Big brown bat,eptFus1,EptFus1.0/eptFus1
+Erinaceus,europaeus,Erinaceus europaeus,E. europaeus,Hedgehog,Hedgehog,eriEur2,EriEur2.0/eriEur2
+Sorex,araneus,Sorex araneus,S. araneus,Shrew,Shrew,sorAra2,Broad/sorAra2
+Condylura,cristata,Condylura cristata,C. cristata,Star-nosed mole,Star-nosed mole,conCri1,ConCri1.0/conCri1
+Loxodonta,africana,Loxodonta africana,L. africana,Elephant,Elephant,loxAfr3,Broad/loxAfr3
+Elephantulus,edwardii,Elephantulus edwardii,E. edwardii,Cape elephant shrew,Cape elephant shrew,eleEdw1,EleEdw1.0/eleEdw1
+Trichechus,manatus latirostris,Trichechus manatus latirostris,T. manatus latirostris,Manatee,Manatee,triMan1,Broad v1.0/triMan1
+Chrysochloris,asiatica,Chrysochloris asiatica,C. asiatica,Cape golden mole,Cape golden mole,chrAsi1,ChrAsi1.0/chrAsi1
+Echinops,telfairi,Echinops telfairi,E. telfairi,Tenrec,Tenrec,echTel2,Broad/echTel2
+Orycteropus,afer,Orycteropus afer afer,O. afer,Aardvark,Aardvark,oryAfe1,OryAfe1.0/oryAfe1
+Dasypus,novemcinctus,Dasypus novemcinctus,D. novemcinctus,Armadillo,Armadillo,dasNov3,Baylor/dasNov3
+Monodelphis,domestica,Monodelphis domestica,M. domestica,Opossum,Opossum,monDom5,Broad/monDom5
+Sarcophilus,harrisii,Sarcophilus harrisii,S. harrisii,Tasmanian devil,Tasmanian devil,sarHar1,WTSI Devil_ref v7.0/sarHar1
+Macropus,eugenii,Macropus eugenii,M. eugenii,Wallaby,Wallaby,macEug2,TWGS Meug_1.1/macEug2
+Ornithorhynchus,anatinus,Ornithorhynchus anatinus,O. anatinus,Platypus,Platypus,ornAna1,WUGSC 5.0.1/ornAna1

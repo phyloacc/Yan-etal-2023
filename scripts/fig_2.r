@@ -1,9 +1,13 @@
-################################################################
+############################################################
+# For PhyloAcc
+# Figure 2
+# Gregg Thomas
+############################################################
 
 this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 
-################################################################
+############################################################
 
 library(ggplot2)
 library(dplyr)
@@ -17,19 +21,21 @@ library(here)
 source("lib/design.r")
 source("lib/get_tree_info.r")
 
-################################################################
+############################################################
 
 save_int_figs = F
-save_final_fig = T
+save_final_fig = F
 outdir = here("figs")
 
 # Options
-################################################################
+############################################################
 
-full_treefile = here("data", "ratite-sim-full.tree")
+cat(as.character(Sys.time()), " | Fig2: Reading trees...\n")
+
+full_treefile = here("data", "trees", "ratite-subset-generic.tree")
 full_sim_tree = read.tree(full_treefile)
 
-treefile = here("data", "ratite-sim.tre")
+treefile = here("data", "trees", "ratite-subset-generic-reduced.tree")
 sim_tree = read.tree(treefile)
 tree_to_df_list = treeToDF(sim_tree)
 sim_tree_info = tree_to_df_list[["info"]]
@@ -49,27 +55,23 @@ sim_info = read.csv(sim_info_file, header=T)
 cols = c("N"="#333333", "Y"=corecol(pal="wilke", numcol=1))
 
 # Input files
-################################################################
+############################################################
+
+cat(as.character(Sys.time()), " | Fig2: Generating panel A (full tree)...\n")
 
 full_p = ggtree(full_sim_tree, size=1, ladderize=F) +
-  #xlim(0,10) +
-  #scale_color_manual(name='Accelerated lineages:', values=cols, breaks=c("Y")) +
   geom_tiplab(color="#333333", size=4, hjust=-0.2) +
-  #ggtitle(paste("Case", case)) +
-  #scale_x_reverse() +
   theme(legend.position="bottom",
         legend.text=element_blank(),
         legend.title=element_text(size=8))
-  #guides(colour=guide_legend(nrow=2)) +
-  #coord_flip()
-
 print(full_p)
 
+# Full tree
+############################################################
 
-################################################################
+cat(as.character(Sys.time()), " | Fig2: Generating panel B (single acceleration)...\n")
 
 sim_info$Case.3 = as.factor(sim_info$Case.3)
-
 
 mono_p = ggtree(sim_tree, size=2, ladderize=F, aes(color=sim_info$Case.3), position=position_nudge(x=0.4, y = 0.3)) +
   #tree_p = ggtree(sim_tree, size=2, ladderize=F, aes_string(data=sim_info, color=case_str)) +
@@ -87,8 +89,10 @@ mono_p = ggtree(sim_tree, size=2, ladderize=F, aes(color=sim_info$Case.3), posit
   coord_flip()
 print(mono_p)
 
-# Monophyletic acceleration (Case 3)
-################################################################
+# Single acceleration (Case 3)
+############################################################
+
+cat(as.character(Sys.time()), " | Fig2: Generating panel C (two accelerations)...\n")
 
 conv_p = ggtree(sim_tree, size=2, ladderize=F, aes(color=sim_info$Case.2), position=position_nudge(x=0.4, y = 0.3)) +
   #tree_p = ggtree(sim_tree, size=2, ladderize=F, aes_string(data=sim_info, color=case_str)) +
@@ -103,8 +107,10 @@ conv_p = ggtree(sim_tree, size=2, ladderize=F, aes(color=sim_info$Case.2), posit
   coord_flip()
 print(conv_p)
 
-# Convergent acceleration (Case 2)
-################################################################
+# Two accelerations (Case 2)
+############################################################
+
+cat(as.character(Sys.time()), " | Fig2: Generating panel D (three accelerations)...\n")
 
 para_p = ggtree(sim_tree, size=2, ladderize=F, aes(color=sim_info$Case.4), position=position_nudge(x=0.4, y = 0.3)) +
   #tree_p = ggtree(sim_tree, size=2, ladderize=F, aes_string(data=sim_info, color=case_str)) +
@@ -119,44 +125,46 @@ para_p = ggtree(sim_tree, size=2, ladderize=F, aes(color=sim_info$Case.4), posit
   coord_flip()
 print(para_p)
 
-# Paraphyletic acceleration (Case 4)
-################################################################
+# Three accelerations (Case 4)
+############################################################
+
+cat(as.character(Sys.time()), " | Fig2: Combining panels...\n")
 
 leg = get_legend(mono_p)
+# Get the legend
 
-panels = list(mono_p + theme(legend.position="none"),
-              conv_p + theme(legend.position="none"),
-              para_p + theme(legend.position="none"))
+#panels = list(mono_p + theme(legend.position="none"),
+#              conv_p + theme(legend.position="none"),
+#              para_p + theme(legend.position="none"))
+# Combine the 3 simulation trees and remove legens
+
+fig_full = plot_grid(NULL, full_p, NULL, ncol=3, rel_widths=c(0.25, 0.5, 0.25), labels=c("", "A", ""), label_size=14)
+# First panel with full tree and NULL margins
 
 fig_panel = plot_grid(mono_p + theme(legend.position="none"),
                       conv_p + theme(legend.position="none"),
                       para_p + theme(legend.position="none"),
                       nrow=1, labels=c("B","C","D"), label_size=14)
-
-fig_full = plot_grid(NULL, full_p, NULL, ncol=3, rel_widths=c(0.25, 0.5, 0.25), labels=c("", "A", ""), label_size=14)
+# Combine the 3 simulation trees and remove legends
 
 fig_main = plot_grid(fig_full, fig_panel, nrow=2, rel_heights=c(1, 0.7))
+# Combine top and bottom
 
 fig = plot_grid(fig_main, leg, nrow=2, rel_heights=c(1,0.1))
+print(fig)
+# Add legend
 
-
-
-#fig_panel = ggarrange(mono_p + theme(legend.position="none"),
-#                      conv_p + theme(legend.position="none"),
-#                      para_p + theme(legend.position="none"),
-#                      nrow=1, labels=c("B","C","D"))
-
-#fig_full = ggarrange(NA, full_p, NA, ncol=3,rel_widths=c(0.25, 0.5, 0.25), labels=c("", "A", ""))
-
-
+# Combine panels
+############################################################
 
 if(save_final_fig){
-  outfilename = here(outdir, "fig2.png")
-  ggsave(outfilename, fig, width=6.5, height=6, unit="in")
+  figfile = here(outdir, "fig2.pdf")
+  cat(as.character(Sys.time()), " | Fig3: Saving figure:", figfile, "\n")
+  ggsave(figfile, fig, width=6.5, height=6, unit="in")
 }
 
 # Save the final figure
-################################################################
+############################################################
 
 
 

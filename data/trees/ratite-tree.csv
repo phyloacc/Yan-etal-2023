@@ -1,0 +1,86 @@
+"label","genus","species","s.name","common.name","common.short","node","clade","node.type","branch.length"
+"taeGut","Taeniopygia","guttata","T. guttata","Zebra Finch","Finch",1,"taeGut","tip",0.0465711
+"ficAlb","Ficedula","albicollis","F. albicollis","Collared Flycatcher","Flycatcher",2,"ficAlb","tip",0.0538431
+"pseHum","Pseudopodoces","humilis","P. humilis","Tibetan Ground-tit","Ground-tit",3,"pseHum","tip",0.041404
+"corBra","Corvus","brachyrhynchos","C. brachyrhynchos","American Crow","Crow",4,"corBra","tip",0.0350496
+"melUnd","Melopsittacus","undulatus","M. undulatus","Budgerigar","Budgerigar",5,"melUnd","tip",0.0935021
+"falPer","Falco","peregrinus","F. peregrinus","Peregrine Falcon","Falcon",6,"falPer","tip",0.067699
+"picPub","Picoides","pubescens","P. pubescens","Downy Woodpecker","Woodpecker",7,"picPub","tip",0.15414
+"lepDis","Leptosomus","discolor","L. discolor","Cuckoo Roller","Courol",8,"lepDis","tip",0.0567956
+"halLeu","Haliaeetus","leucocephalus","H. leucocephalus","Bald Eagle","Eagle",9,"halLeu","tip",0.0461819
+"aptFor","Aptenodytes","forsteri","A. forsteri","Emperor Penguin","Penguin1",10,"aptFor","tip",0.011077
+"pygAde","Pygoscelis","adelie","P. adelie","Adelie Penguin","Penguin2",11,"pygAde","tip",0.0132399
+"fulGla","Fulmaris","glacialis","F. glacialis","Northern Fulmar","Fulmar",12,"fulGla","tip",0.0328105
+"nipNip","Nipponia","nippon","N. nippon","Crested Ibis","Ibis",13,"nipNip","tip",0.0443203
+"balReg","Balearica","regulorum","B. regulorum","Grey Crowned Crane","Crane",14,"balReg","tip",0.0520101
+"chaVoc","Charadrius","vociferus","C. vociferus","Killdeer","Killdeer",15,"chaVoc","tip",0.0561306
+"calAnn","Calypte","anna","C. anna","Annas Hummingbird","Hummingbird",16,"calAnn","tip",0.097791
+"chaPel","Chaetura","pelagica","C. pelagica","Chimney Swift","Swift",17,"chaPel","tip",0.0810873
+"cucCan","Cuculus","canorus","C. canorus","Common Cuckoo","Cuckoo",18,"cucCan","tip",0.101305
+"colLiv","Columba","livia","C. livia","Rock Pigeon (domestic)","Pigeon",19,"colLiv","tip",0.0946068
+"mesUni","Mesitornis","unicolor","M. unicolor","Brown Mesite","Mesite",20,"mesUni","tip",0.0851836
+"galGal","Gallus","gallus","G. gallus","Red Junglefowl (Chicken)","Chicken",21,"galGal","tip",0.0375302
+"melGal","Meleagris","gallopavo","M. gallopavo","Turkey","Turkey",22,"melGal","tip",0.0422264
+"anaPla","Anas","platyrhynchos","A. platyrhynchos","Mallard (domestic)","Mallard",23,"anaPla","tip",0.0856839
+"aptHaa","Apteryx","haastii","A. haastii","Great spotted kiwi","Kiwi1",24,"aptHaa","tip",0.00138725
+"aptOwe","Apteryx","owenii","A. owenii","Little spotted kiwi","Kiwi2",25,"aptOwe","tip",0.0016341
+"aptRow","Apteryx","rowi","A. rowi","Okarito brown kiwi","Kiwi3",26,"aptRow","tip",0.00410494
+"casCas","Casuarius","casuarius","C. casuarius","Southern cassowary","Cassowary",27,"casCas","tip",0.0115461
+"droNov","Dromaius","novaehollandiae","D. novaehollandiae","Emu","Emu",28,"droNov","tip",0.0137332
+"rheAme","Rhea","americana","R. americana","Greater rhea","Rhea1",29,"rheAme","tip",0.00469588
+"rhePen","Rhea","pennata","R. pennata","Lesser rhea","Rhea2",30,"rhePen","tip",0.00533574
+"cryCin","Crypturellus","cinnamomeus","C. cinnamomeus","Thicket tinamou","Tinamou1",31,"cryCin","tip",0.0470926
+"tinGut","Tinamus","guttatus","T. gutattus","White throated tinamou","Tinamou2",32,"tinGut","tip",0.0388556
+"eudEle","Eudromia","elegans","E. elegans","Elegant crested tinamou","Tinamou3",33,"eudEle","tip",0.0655012
+"notPer","Nothoprocta","perdicaria","N. perdicaria","Chilean tinamou","Tinamou4",34,"notPer","tip",0.073059
+"anoDid","Anomalopteryx","didiformis","A. didiformis","Little Bush Moa","Moa",35,"anoDid","tip",0.0492722
+"strCam","Struthio","calemus","S. calemus","Ostrich","Ostrich",36,"strCam","tip",0.051388
+"allMis","Alligator","mississippiensis","A. mississippiensis","American Alligator","Alligator1",37,"allMis","tip",0.00896976
+"allSin","Alligator","sinensis","A. sinensis","Chinese Alligator","Alligator2",38,"allSin","tip",0.00775997
+"croPor","Crocodylus","porosus","C. porosus","Saltwater Crocodile","Crocodile",39,"croPor","tip",0.0178768
+"gavGan","Gavialis","gangeticus","G. Gangeticus","Indian Gharial","Gharial",40,"gavGan","tip",0.0144878
+"chrPic","Chrysemys","picta","C. picta","Painted Turtle","Turtle1",41,"chrPic","tip",0.0287755
+"cheMyd","Chelonia","mydas","C. mydas","Green Sea Turtle","Turtle2",42,"cheMyd","tip",0.0316114
+"anoCar","Anolis","carolinensis","A. carolinensis","Green Anole","Anole",43,"anoCar","tip",0.248572
+"taeGut-anoCar",NA,NA,NA,NA,NA,44,"allMis;allSin;anaPla;anoCar;anoDid;aptFor;aptHaa;aptOwe;aptRow;balReg;calAnn;casCas;chaPel;chaVoc;cheMyd;chrPic;colLiv;corBra;croPor;cryCin;cucCan;droNov;eudEle;falPer;ficAlb;fulGla;galGal;gavGan;halLeu;lepDis;melGal;melUnd;mesUni;nipNip;notPer;picPub;pseHum;pygAde;rheAme;rhePen;strCam;taeGut;tinGut","ROOT",NA
+"taeGut-chrPic",NA,NA,NA,NA,NA,45,"allMis;allSin;anaPla;anoDid;aptFor;aptHaa;aptOwe;aptRow;balReg;calAnn;casCas;chaPel;chaVoc;cheMyd;chrPic;colLiv;corBra;croPor;cryCin;cucCan;droNov;eudEle;falPer;ficAlb;fulGla;galGal;gavGan;halLeu;lepDis;melGal;melUnd;mesUni;nipNip;notPer;picPub;pseHum;pygAde;rheAme;rhePen;strCam;taeGut;tinGut","internal",0.248572
+"taeGut-allMis",NA,NA,NA,NA,NA,46,"allMis;allSin;anaPla;anoDid;aptFor;aptHaa;aptOwe;aptRow;balReg;calAnn;casCas;chaPel;chaVoc;colLiv;corBra;croPor;cryCin;cucCan;droNov;eudEle;falPer;ficAlb;fulGla;galGal;gavGan;halLeu;lepDis;melGal;melUnd;mesUni;nipNip;notPer;picPub;pseHum;pygAde;rheAme;rhePen;strCam;taeGut;tinGut","internal",0.0317535
+"taeGut-aptHaa",NA,NA,NA,NA,NA,47,"anaPla;anoDid;aptFor;aptHaa;aptOwe;aptRow;balReg;calAnn;casCas;chaPel;chaVoc;colLiv;corBra;cryCin;cucCan;droNov;eudEle;falPer;ficAlb;fulGla;galGal;halLeu;lepDis;melGal;melUnd;mesUni;nipNip;notPer;picPub;pseHum;pygAde;rheAme;rhePen;strCam;taeGut;tinGut","internal",0.169821
+"taeGut-galGal",NA,NA,NA,NA,NA,48,"anaPla;aptFor;balReg;calAnn;chaPel;chaVoc;colLiv;corBra;cucCan;falPer;ficAlb;fulGla;galGal;halLeu;lepDis;melGal;melUnd;mesUni;nipNip;picPub;pseHum;pygAde;taeGut","internal",0.0406841
+"taeGut-colLiv",NA,NA,NA,NA,NA,49,"aptFor;balReg;calAnn;chaPel;chaVoc;colLiv;corBra;cucCan;falPer;ficAlb;fulGla;halLeu;lepDis;melUnd;mesUni;nipNip;picPub;pseHum;pygAde;taeGut","internal",0.0306123
+"taeGut-calAnn",NA,NA,NA,NA,NA,50,"aptFor;balReg;calAnn;chaPel;chaVoc;corBra;cucCan;falPer;ficAlb;fulGla;halLeu;lepDis;melUnd;nipNip;picPub;pseHum;pygAde;taeGut","internal",0.00246659
+"taeGut-balReg",NA,NA,NA,NA,NA,51,"aptFor;balReg;chaVoc;corBra;falPer;ficAlb;fulGla;halLeu;lepDis;melUnd;nipNip;picPub;pseHum;pygAde;taeGut","internal",0.0060597
+"taeGut-aptFor",NA,NA,NA,NA,NA,52,"aptFor;corBra;falPer;ficAlb;fulGla;halLeu;lepDis;melUnd;nipNip;picPub;pseHum;pygAde;taeGut","internal",0.00241828
+"taeGut-picPub",NA,NA,NA,NA,NA,53,"corBra;falPer;ficAlb;halLeu;lepDis;melUnd;picPub;pseHum;taeGut","internal",0.00516619
+"taeGut-falPer",NA,NA,NA,NA,NA,54,"corBra;falPer;ficAlb;melUnd;pseHum;taeGut","internal",0.00596537
+"taeGut-melUnd",NA,NA,NA,NA,NA,55,"corBra;ficAlb;melUnd;pseHum;taeGut","internal",0.0152535
+"taeGut-corBra",NA,NA,NA,NA,NA,56,"corBra;ficAlb;pseHum;taeGut","internal",0.104764
+"taeGut-pseHum",NA,NA,NA,NA,NA,57,"ficAlb;pseHum;taeGut","internal",0.0162431
+"taeGut-ficAlb",NA,NA,NA,NA,NA,58,"ficAlb;taeGut","internal",0.00653725
+"picPub-halLeu",NA,NA,NA,NA,NA,59,"halLeu;lepDis;picPub","internal",0.00238753
+"picPub-lepDis",NA,NA,NA,NA,NA,60,"lepDis;picPub","internal",0.00986605
+"aptFor-nanAur",NA,NA,NA,NA,NA,61,"aptFor;fulGla;nipNip;pygAde","internal",0.00744618
+"aptFor-fulGla",NA,NA,NA,NA,NA,62,"aptFor;fulGla;pygAde","internal",0.00341323
+"aptFor-pygAde",NA,NA,NA,NA,NA,63,"aptFor;pygAde","internal",0.0217911
+"balReg-chaVoc",NA,NA,NA,NA,NA,64,"balReg;chaVoc","internal",0.00489432
+"calAnn-cucCan",NA,NA,NA,NA,NA,65,"calAnn;chaPel;cucCan","internal",0.00795828
+"calAnn-chaPel",NA,NA,NA,NA,NA,66,"calAnn;chaPel","internal",0.0305222
+"colLiv-mesUni",NA,NA,NA,NA,NA,67,"colLiv;mesUni","internal",0.0128079
+"galGal-anaPla",NA,NA,NA,NA,NA,68,"anaPla;galGal;melGal","internal",0.0363849
+"galGal-melGal",NA,NA,NA,NA,NA,69,"galGal;melGal","internal",0.0921402
+"aptHaa-strCam",NA,NA,NA,NA,NA,70,"anoDid;aptHaa;aptOwe;aptRow;casCas;cryCin;droNov;eudEle;notPer;rheAme;rhePen;strCam;tinGut","internal",0.0406969
+"aptHaa-cryCin",NA,NA,NA,NA,NA,71,"anoDid;aptHaa;aptOwe;aptRow;casCas;cryCin;droNov;eudEle;notPer;rheAme;rhePen;tinGut","internal",0.0118742
+"aptHaa-rheAme",NA,NA,NA,NA,NA,72,"aptHaa;aptOwe;aptRow;casCas;droNov;rheAme;rhePen","internal",0.00185668
+"aptHaa-casCas",NA,NA,NA,NA,NA,73,"aptHaa;aptOwe;aptRow;casCas;droNov","internal",0.0028599
+"aptHaa-aptRow",NA,NA,NA,NA,NA,74,"aptHaa;aptOwe;aptRow","internal",0.0277496
+"aptHaa-aptOwe",NA,NA,NA,NA,NA,75,"aptHaa;aptOwe","internal",0.00305054
+"casCas-droNov",NA,NA,NA,NA,NA,76,"casCas;droNov","internal",0.0273773
+"rheAme-rhePen",NA,NA,NA,NA,NA,77,"rheAme;rhePen","internal",0.0566382
+"cryCin-anoDid",NA,NA,NA,NA,NA,78,"anoDid;cryCin;eudEle;notPer;tinGut","internal",0.0253604
+"cryCin-eudEle",NA,NA,NA,NA,NA,79,"cryCin;eudEle;notPer;tinGut","internal",0.0672093
+"cryCin-tinGut",NA,NA,NA,NA,NA,80,"cryCin;tinGut","internal",0.0172068
+"eudEle-notPer",NA,NA,NA,NA,NA,81,"eudEle;notPer","internal",0.0079941
+"allMis-croPor",NA,NA,NA,NA,NA,82,"allMis;allSin;croPor;gavGan","internal",0.147416
+"allMis-allSin",NA,NA,NA,NA,NA,83,"allMis;allSin","internal",0.0142516
+"croPor-gavGan",NA,NA,NA,NA,NA,84,"croPor;gavGan","internal",0.0116889
+"chrPic-cheMyd",NA,NA,NA,NA,NA,85,"cheMyd;chrPic","internal",0.0843051

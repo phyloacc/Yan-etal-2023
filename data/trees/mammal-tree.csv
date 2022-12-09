@@ -1,0 +1,124 @@
+"label","genus","species","species.name","s.name","common.name","common.short","genome","node","clade","node.type","branch.length"
+"hg38","Homo","sapiens","Homo sapiens","H. sapiens","Human","Human","GRCh37/hg19",1,"hg38","tip",0.00635811
+"panTro4","Pan","troglodytes","Pan troglodytes","P. troglodytes","Chimp","Chimp","CSAC 2.1.4/panTro4",2,"panTro4","tip",0.00639727
+"gorGor3","Gorilla","gorilla","Gorilla gorilla gorilla","G. gorilla","Gorilla","Gorilla","gorGor3.1/gorGor3",3,"gorGor3","tip",0.00871122
+"ponAbe2","Pongo","pygmaeus abelii","Pongo pygmaeus abelii","P. pygmaeus abelii","Orangutan","Orangutan","WUGSC 2.0.2/ponAbe2",4,"ponAbe2","tip",0.0183964
+"nomLeu3","Nomascus","leucogenys","Nomascus leucogenys","N. leucogenys","Gibbon","Gibbon","GGSC Nleu3.0/nomLeu3",5,"nomLeu3","tip",0.0213327
+"rheMac3","Macaca","mulatta","Macaca mulatta","R. mulatta","Rhesus","Rhesus","BGI CR_1.0/rheMac3",6,"rheMac3","tip",0.0028622
+"macFas5","Macaca","fascicularis","Macaca fascicularis","M. fascicularis","Crab-eating macaque","macaque","Macaca_fascicularis_5.0/macFas5",7,"macFas5","tip",0.00197199
+"papAnu2","Papio","hamadryas","Papio hamadryas","P. hamadryas","Baboon","Baboon","Baylor Pham_1.0/papHam1",8,"papAnu2","tip",0.00751373
+"chlSab2","Chlorocebus","sabaeus","Chlorocebus sabaeus","C. sabaeus","Green monkey","Green monkey","Chlorocebus_sabeus 1.0/chlSab1",9,"chlSab2","tip",0.0122377
+"calJac3","Callithrix","jacchus","Callithrix jacchus","C. jacchus","Marmoset","Marmoset","WUGSC 3.2/calJac3",10,"calJac3","tip",0.0333897
+"saiBol1","Saimiri","boliviensis","Saimiri boliviensis","S. boliviensis","Squirrel monkey","Squirrel monkey","Broad/saiBol1",11,"saiBol1","tip",0.0323178
+"otoGar3","Otolemur","garnettii","Otolemur garnettii","O. garnettii","Bushbaby","Bushbaby","Broad/otoGar3",12,"otoGar3","tip",0.152902
+"tupChi1","Tupaia","chinensis","Tupaia chinensis","T. chinensis","Chinese tree shrew","Tree shrew","TupChi_1.0/tupChi1",13,"tupChi1","tip",0.187728
+"speTri2","Spermophilus","tridecemlineatus","Spermophilus tridecemlineatus","S. tridecemlineatus","Squirrel","Squirrel","Broad/speTri2",14,"speTri2","tip",0.140811
+"jacJac1","Jaculus","jaculus","Jaculus jaculus","J. jaculus","Lesser Egyptian jerboa","Jerboa","JacJac1.0/jacJac1",15,"jacJac1","tip",0.185825
+"micOch1","Microtus","ochrogaster","Microtus ochrogaster","M. ochrogaster","Prairie vole","Prairie vole","MicOch1.0/micOch1",16,"micOch1","tip",0.109359
+"criGri1","Cricetulus","griseus","Cricetulus griseus","C. griseus","Chinese hamster","Chinese hamster","C_griseus_v1.0/criGri1",17,"criGri1","tip",0.054378
+"mesAur1","Mesocricetus","auratus","Mesocricetus auratus","M. auratus","Golden hamster","Golden hamster","MesAur1.0/mesAur1",18,"mesAur1","tip",0.0666414
+"mm10","Mus","musculus","Mus musculus","M. musculus","Mouse","Mouse","GRCm38/mm10",19,"mm10","tip",0.0855261
+"rn6","Rattus","norvegicus","Rattus norvegicus","R. norvegicus","Rat","Rat","RGSC 5.0/rn5",20,"rn6","tip",0.0922028
+"hetGla2","Heterocephalus","glaber","Heterocephalus glaber","H. glaber","Naked mole-rat","Naked mole-rat","Broad HetGla_female_1.0/hetGla2",21,"hetGla2","tip",0.0893915
+"cavPor3","Cavia","porcellus","Cavia porcellus","C. porcellus","Guinea pig","Guinea pig","Broad/cavPor3",22,"cavPor3","tip",0.119187
+"chiLan1","Chinchilla","lanigera","Chinchilla lanigera","C. lanigera","Chinchilla","Chinchilla","ChiLan1.0/chiLan1",23,"chiLan1","tip",0.0829668
+"octDeg1","Octodon","degus","Octodon degus","O. degus","Brush-tailed rat","Brush-tailed rat","OctDeg1.0/octDeg1",24,"octDeg1","tip",0.122014
+"oryCun2","Oryctolagus","cuniculus","Oryctolagus cuniculus","O. cuniculus","Rabbit","Rabbit","Broad/oryCun2",25,"oryCun2","tip",0.110274
+"ochPri3","Ochotona","princeps","Ochotona princeps","O. princeps","Pika","Pika","OchPri3.0/ochPri3",26,"ochPri3","tip",0.195376
+"susScr3","Sus","scrofa","Sus scrofa","S. scrofa","Pig","Pig","SGSC Sscrofa10.2/susScr3",27,"susScr3","tip",0.124351
+"vicPac2","Vicugna","pacos","Vicugna pacos","V. pacos","Alpaca","Alpaca","Vicugna_pacos-2.0.1/vicPac2",28,"vicPac2","tip",0.0166038
+"camFer1","Camelus","ferus","Camelus ferus","C. ferus","Bactrian camel","Camel","CB1/camFer1",29,"camFer1","tip",0.0158169
+"turTru2","Tursiops","truncatus","Tursiops truncatus","T. truncatus","Dolphin","Dolphin","Baylor Ttru_1.4/turTru2",30,"turTru2","tip",0.00615913
+"orcOrc1","Orcinus","orca","Orcinus orca","O. orca","Killer whale","Killer whale","Oorc_1.1/orcOrc1",31,"orcOrc1","tip",0.00529173
+"panHod1","Pantholops","hodgsonii","Pantholops hodgsonii","P. hodgsonii","Tibetan antelope","Tibetan antelope","PHO1.0/panHod1",32,"panHod1","tip",0.017308
+"bosTau8","Bos","taurus","Bos taurus","B. taurus","Cow","Cow","Baylor Btau_4.6.1/bosTau7",33,"bosTau8","tip",0.0505552
+"oviAri3","Ovis","aries","Ovis aries","O. aries","Sheep","Sheep","ISGC Oar_v3.1/oviAri3",34,"oviAri3","tip",0.0125618
+"capHir1","Capra","hircus","Capra hircus","C. hircus","Domestic goat","Goat","CHIR_1.0/capHir1",35,"capHir1","tip",0.0120594
+"equCab2","Equus","caballus","Equus caballus","E. caballus","Horse","Horse","Broad/equCab2",36,"equCab2","tip",0.0801931
+"cerSim1","Ceratotherium","simum","Ceratotherium simum","C. simum","White rhinoceros","Rhinoceros","CerSimSim1.0/cerSim1",37,"cerSim1","tip",0.0618011
+"felCat8","Felis","catus","Felis catus","F. catus","Cat","Cat","ICGSC Felis_catus 6.2/felCat5",38,"felCat8","tip",0.0887721
+"canFam3","Canis","lupus familiaris","Canis lupus familiaris","C. lupus familiaris","Dog","Dog","Broad CanFam3.1/canFam3",39,"canFam3","tip",0.0890799
+"musFur1","Mustela","furo","Mustela putorius furo","M. furo","Ferret","Ferret","MusPutFur1.0/musFur1",40,"musFur1","tip",0.091856
+"ailMel1","Ailuropoda","melanoleuca","Ailuropoda melanoleuca","A. melanoleuca","Panda","Panda","BGI-Shenzhen 1.0/ailMel1",41,"ailMel1","tip",0.0607956
+"odoRosDiv1","Odobenus","rosmarus divergens","Odobenus rosmarus divergens","O. rosmarus divergens","Pacific walrus","Walrus","Oros_1.0/odoRosDiv1",42,"odoRosDiv1","tip",0.0259317
+"lepWed1","Leptonychotes","weddellii","Leptonychotes weddellii","L. weddellii","Weddell seal","Seal","LepWed1.0/lepWed1",43,"lepWed1","tip",0.0233111
+"pteAle1","Pteropus","alecto","Pteropus alecto","P. alecto","Black flying-fox","Flying-fox","ASM32557v1/pteAle1",44,"pteAle1","tip",0.00745471
+"pteVam1","Pteropus","vampyrus","Pteropus vampyrus","P. vampyrus","Megabat","Megabat","Broad/pteVam1",45,"pteVam1","tip",0.00849452
+"eptFus1","Eptesicus","fuscus","Eptesicus fuscus","E. fuscus","Big brown bat","Big brown bat","EptFus1.0/eptFus1",46,"eptFus1","tip",0.0398389
+"myoDav1","Myotis","davidii","Myotis davidii","M. davidii","Davids myotis bat","Myotis bat","ASM32734v1/myoDav1",47,"myoDav1","tip",0.0277149
+"myoLuc2","Myotis","lucifugus","Myotis lucifugus","M. lucifugus","Microbat","Microbat","Broad Institute Myoluc2.0/myoLuc2",48,"myoLuc2","tip",0.0160484
+"eriEur2","Erinaceus","europaeus","Erinaceus europaeus","E. europaeus","Hedgehog","Hedgehog","EriEur2.0/eriEur2",49,"eriEur2","tip",0.245692
+"sorAra2","Sorex","araneus","Sorex araneus","S. araneus","Shrew","Shrew","Broad/sorAra2",50,"sorAra2","tip",0.288669
+"conCri1","Condylura","cristata","Condylura cristata","C. cristata","Star-nosed mole","Star-nosed mole","ConCri1.0/conCri1",51,"conCri1","tip",0.163421
+"loxAfr3","Loxodonta","africana","Loxodonta africana","L. africana","Elephant","Elephant","Broad/loxAfr3",52,"loxAfr3","tip",0.0902075
+"eleEdw1","Elephantulus","edwardii","Elephantulus edwardii","E. edwardii","Cape elephant shrew","Cape elephant shrew","EleEdw1.0/eleEdw1",53,"eleEdw1","tip",0.225293
+"triMan1","Trichechus","manatus latirostris","Trichechus manatus latirostris","T. manatus latirostris","Manatee","Manatee","Broad v1.0/triMan1",54,"triMan1","tip",0.0759834
+"chrAsi1","Chrysochloris","asiatica","Chrysochloris asiatica","C. asiatica","Cape golden mole","Cape golden mole","ChrAsi1.0/chrAsi1",55,"chrAsi1","tip",0.145989
+"echTel2","Echinops","telfairi","Echinops telfairi","E. telfairi","Tenrec","Tenrec","Broad/echTel2",56,"echTel2","tip",0.232419
+"oryAfe1","Orycteropus","afer","Orycteropus afer afer","O. afer","Aardvark","Aardvark","OryAfe1.0/oryAfe1",57,"oryAfe1","tip",0.117489
+"dasNov3","Dasypus","novemcinctus","Dasypus novemcinctus","D. novemcinctus","Armadillo","Armadillo","Baylor/dasNov3",58,"dasNov3","tip",0.160081
+"monDom5","Monodelphis","domestica","Monodelphis domestica","M. domestica","Opossum","Opossum","Broad/monDom5",59,"monDom5","tip",0.135945
+"sarHar1","Sarcophilus","harrisii","Sarcophilus harrisii","S. harrisii","Tasmanian devil","Tasmanian devil","WTSI Devil_ref v7.0/sarHar1",60,"sarHar1","tip",0.12595
+"macEug2","Macropus","eugenii","Macropus eugenii","M. eugenii","Wallaby","Wallaby","TWGS Meug_1.1/macEug2",61,"macEug2","tip",0.17055
+"ornAna1","Ornithorhynchus","anatinus","Ornithorhynchus anatinus","O. anatinus","Platypus","Platypus","WUGSC 5.0.1/ornAna1",62,"ornAna1","tip",0.501668
+"hg38-ornAna1",NA,NA,NA,NA,NA,NA,NA,63,"ailMel1;bosTau8;calJac3;camFer1;canFam3;capHir1;cavPor3;cerSim1;chiLan1;chlSab2;chrAsi1;conCri1;criGri1;dasNov3;echTel2;eleEdw1;eptFus1;equCab2;eriEur2;felCat8;gorGor3;hetGla2;hg38;jacJac1;lepWed1;loxAfr3;macEug2;macFas5;mesAur1;micOch1;mm10;monDom5;musFur1;myoDav1;myoLuc2;nomLeu3;ochPri3;octDeg1;odoRosDiv1;orcOrc1;ornAna1;oryAfe1;oryCun2;otoGar3;oviAri3;panHod1;panTro4;papAnu2;ponAbe2;pteAle1;pteVam1;rheMac3;rn6;saiBol1;sarHar1;sorAra2;speTri2;susScr3;triMan1;tupChi1;turTru2;vicPac2","ROOT",NA
+"hg38-monDom5",NA,NA,NA,NA,NA,NA,NA,64,"ailMel1;bosTau8;calJac3;camFer1;canFam3;capHir1;cavPor3;cerSim1;chiLan1;chlSab2;chrAsi1;conCri1;criGri1;dasNov3;echTel2;eleEdw1;eptFus1;equCab2;eriEur2;felCat8;gorGor3;hetGla2;hg38;jacJac1;lepWed1;loxAfr3;macEug2;macFas5;mesAur1;micOch1;mm10;monDom5;musFur1;myoDav1;myoLuc2;nomLeu3;ochPri3;octDeg1;odoRosDiv1;orcOrc1;oryAfe1;oryCun2;otoGar3;oviAri3;panHod1;panTro4;papAnu2;ponAbe2;pteAle1;pteVam1;rheMac3;rn6;saiBol1;sarHar1;sorAra2;speTri2;susScr3;triMan1;tupChi1;turTru2;vicPac2","internal",0.0768943
+"hg38-loxAfr3",NA,NA,NA,NA,NA,NA,NA,65,"ailMel1;bosTau8;calJac3;camFer1;canFam3;capHir1;cavPor3;cerSim1;chiLan1;chlSab2;chrAsi1;conCri1;criGri1;dasNov3;echTel2;eleEdw1;eptFus1;equCab2;eriEur2;felCat8;gorGor3;hetGla2;hg38;jacJac1;lepWed1;loxAfr3;macFas5;mesAur1;micOch1;mm10;musFur1;myoDav1;myoLuc2;nomLeu3;ochPri3;octDeg1;odoRosDiv1;orcOrc1;oryAfe1;oryCun2;otoGar3;oviAri3;panHod1;panTro4;papAnu2;ponAbe2;pteAle1;pteVam1;rheMac3;rn6;saiBol1;sorAra2;speTri2;susScr3;triMan1;tupChi1;turTru2;vicPac2","internal",0.24482
+"hg38-susScr3",NA,NA,NA,NA,NA,NA,NA,66,"ailMel1;bosTau8;calJac3;camFer1;canFam3;capHir1;cavPor3;cerSim1;chiLan1;chlSab2;conCri1;criGri1;eptFus1;equCab2;eriEur2;felCat8;gorGor3;hetGla2;hg38;jacJac1;lepWed1;macFas5;mesAur1;micOch1;mm10;musFur1;myoDav1;myoLuc2;nomLeu3;ochPri3;octDeg1;odoRosDiv1;orcOrc1;oryCun2;otoGar3;oviAri3;panHod1;panTro4;papAnu2;ponAbe2;pteAle1;pteVam1;rheMac3;rn6;saiBol1;sorAra2;speTri2;susScr3;tupChi1;turTru2;vicPac2","internal",0.0223121
+"hg38-speTri2",NA,NA,NA,NA,NA,NA,NA,67,"calJac3;cavPor3;chiLan1;chlSab2;criGri1;gorGor3;hetGla2;hg38;jacJac1;macFas5;mesAur1;micOch1;mm10;nomLeu3;ochPri3;octDeg1;oryCun2;otoGar3;panTro4;papAnu2;ponAbe2;rheMac3;rn6;saiBol1;speTri2;tupChi1","internal",0.0212441
+"hg38-tupChi1",NA,NA,NA,NA,NA,NA,NA,68,"calJac3;chlSab2;gorGor3;hg38;macFas5;nomLeu3;otoGar3;panTro4;papAnu2;ponAbe2;rheMac3;saiBol1;tupChi1","internal",0.00510076
+"hg38-otoGar3",NA,NA,NA,NA,NA,NA,NA,69,"calJac3;chlSab2;gorGor3;hg38;macFas5;nomLeu3;otoGar3;panTro4;papAnu2;ponAbe2;rheMac3;saiBol1","internal",0.0175657
+"hg38-calJac3",NA,NA,NA,NA,NA,NA,NA,70,"calJac3;chlSab2;gorGor3;hg38;macFas5;nomLeu3;panTro4;papAnu2;ponAbe2;rheMac3;saiBol1","internal",0.0650259
+"hg38-rheMac3",NA,NA,NA,NA,NA,NA,NA,71,"chlSab2;gorGor3;hg38;macFas5;nomLeu3;panTro4;papAnu2;ponAbe2;rheMac3","internal",0.0208042
+"hg38-nomLeu3",NA,NA,NA,NA,NA,NA,NA,72,"gorGor3;hg38;nomLeu3;panTro4;ponAbe2","internal",0.0110901
+"hg38-ponAbe2",NA,NA,NA,NA,NA,NA,NA,73,"gorGor3;hg38;panTro4;ponAbe2","internal",0.00336551
+"hg38-gorGor3",NA,NA,NA,NA,NA,NA,NA,74,"gorGor3;hg38;panTro4","internal",0.00953503
+"hg38-panTro4",NA,NA,NA,NA,NA,NA,NA,75,"hg38;panTro4","internal",0.00214587
+"rheMac3-chlSab2",NA,NA,NA,NA,NA,NA,NA,76,"chlSab2;macFas5;papAnu2;rheMac3","internal",0.0255202
+"rheMac3-papAnu2",NA,NA,NA,NA,NA,NA,NA,77,"macFas5;papAnu2;rheMac3","internal",0.0040709
+"rheMac3-macFas5",NA,NA,NA,NA,NA,NA,NA,78,"macFas5;rheMac3","internal",0.0050833
+"calJac3-saiBol1",NA,NA,NA,NA,NA,NA,NA,79,"calJac3;saiBol1","internal",0.0347897
+"speTri2-oryCun2",NA,NA,NA,NA,NA,NA,NA,80,"cavPor3;chiLan1;criGri1;hetGla2;jacJac1;mesAur1;micOch1;mm10;ochPri3;octDeg1;oryCun2;rn6;speTri2","internal",0.0129379
+"speTri2-hetGla2",NA,NA,NA,NA,NA,NA,NA,81,"cavPor3;chiLan1;criGri1;hetGla2;jacJac1;mesAur1;micOch1;mm10;octDeg1;rn6;speTri2","internal",0.0272505
+"speTri2-jacJac1",NA,NA,NA,NA,NA,NA,NA,82,"criGri1;jacJac1;mesAur1;micOch1;mm10;rn6;speTri2","internal",0.00771378
+"jacJac1-micOch1",NA,NA,NA,NA,NA,NA,NA,83,"criGri1;jacJac1;mesAur1;micOch1;mm10;rn6","internal",0.0569671
+"micOch1-mm10",NA,NA,NA,NA,NA,NA,NA,84,"criGri1;mesAur1;micOch1;mm10;rn6","internal",0.116838
+"micOch1-criGri1",NA,NA,NA,NA,NA,NA,NA,85,"criGri1;mesAur1;micOch1","internal",0.0282033
+"criGri1-mesAur1",NA,NA,NA,NA,NA,NA,NA,86,"criGri1;mesAur1","internal",0.0360916
+"mm10-rn6",NA,NA,NA,NA,NA,NA,NA,87,"mm10;rn6","internal",0.0652661
+"hetGla2-cavPor3",NA,NA,NA,NA,NA,NA,NA,88,"cavPor3;chiLan1;hetGla2;octDeg1","internal",0.105307
+"cavPor3-chiLan1",NA,NA,NA,NA,NA,NA,NA,89,"cavPor3;chiLan1;octDeg1","internal",0.0266244
+"chiLan1-octDeg1",NA,NA,NA,NA,NA,NA,NA,90,"chiLan1;octDeg1","internal",0.0152716
+"oryCun2-ochPri3",NA,NA,NA,NA,NA,NA,NA,91,"ochPri3;oryCun2","internal",0.104344
+"susScr3-eriEur2",NA,NA,NA,NA,NA,NA,NA,92,"ailMel1;bosTau8;camFer1;canFam3;capHir1;cerSim1;conCri1;eptFus1;equCab2;eriEur2;felCat8;lepWed1;musFur1;myoDav1;myoLuc2;odoRosDiv1;orcOrc1;oviAri3;panHod1;pteAle1;pteVam1;sorAra2;susScr3;turTru2;vicPac2","internal",0.0230746
+"susScr3-equCab2",NA,NA,NA,NA,NA,NA,NA,93,"ailMel1;bosTau8;camFer1;canFam3;capHir1;cerSim1;eptFus1;equCab2;felCat8;lepWed1;musFur1;myoDav1;myoLuc2;odoRosDiv1;orcOrc1;oviAri3;panHod1;pteAle1;pteVam1;susScr3;turTru2;vicPac2","internal",0.0122512
+"susScr3-vicPac2",NA,NA,NA,NA,NA,NA,NA,94,"bosTau8;camFer1;capHir1;orcOrc1;oviAri3;panHod1;susScr3;turTru2;vicPac2","internal",0.0445492
+"vicPac2-turTru2",NA,NA,NA,NA,NA,NA,NA,95,"bosTau8;camFer1;capHir1;orcOrc1;oviAri3;panHod1;turTru2;vicPac2","internal",0.00440398
+"vicPac2-camFer1",NA,NA,NA,NA,NA,NA,NA,96,"camFer1;vicPac2","internal",0.0985397
+"turTru2-panHod1",NA,NA,NA,NA,NA,NA,NA,97,"bosTau8;capHir1;orcOrc1;oviAri3;panHod1;turTru2","internal",0.0224037
+"turTru2-orcOrc1",NA,NA,NA,NA,NA,NA,NA,98,"orcOrc1;turTru2","internal",0.0574423
+"panHod1-bosTau8",NA,NA,NA,NA,NA,NA,NA,99,"bosTau8;capHir1;oviAri3;panHod1","internal",0.112657
+"bosTau8-oviAri3",NA,NA,NA,NA,NA,NA,NA,100,"bosTau8;capHir1;oviAri3","internal",0.0017629
+"oviAri3-capHir1",NA,NA,NA,NA,NA,NA,NA,101,"capHir1;oviAri3","internal",0.00662765
+"equCab2-pteAle1",NA,NA,NA,NA,NA,NA,NA,102,"ailMel1;canFam3;cerSim1;eptFus1;equCab2;felCat8;lepWed1;musFur1;myoDav1;myoLuc2;odoRosDiv1;pteAle1;pteVam1","internal",0.00373968
+"equCab2-felCat8",NA,NA,NA,NA,NA,NA,NA,103,"ailMel1;canFam3;cerSim1;equCab2;felCat8;lepWed1;musFur1;odoRosDiv1","internal",0.00483835
+"equCab2-cerSim1",NA,NA,NA,NA,NA,NA,NA,104,"cerSim1;equCab2","internal",0.0347784
+"felCat8-canFam3",NA,NA,NA,NA,NA,NA,NA,105,"ailMel1;canFam3;felCat8;lepWed1;musFur1;odoRosDiv1","internal",0.0518729
+"canFam3-musFur1",NA,NA,NA,NA,NA,NA,NA,106,"ailMel1;canFam3;lepWed1;musFur1;odoRosDiv1","internal",0.0210109
+"musFur1-ailMel1",NA,NA,NA,NA,NA,NA,NA,107,"ailMel1;lepWed1;musFur1;odoRosDiv1","internal",0.0200318
+"ailMel1-odoRosDiv1",NA,NA,NA,NA,NA,NA,NA,108,"ailMel1;lepWed1;odoRosDiv1","internal",0.00450724
+"odoRosDiv1-lepWed1",NA,NA,NA,NA,NA,NA,NA,109,"lepWed1;odoRosDiv1","internal",0.0279745
+"pteAle1-eptFus1",NA,NA,NA,NA,NA,NA,NA,110,"eptFus1;myoDav1;myoLuc2;pteAle1;pteVam1","internal",0.0341993
+"pteAle1-pteVam1",NA,NA,NA,NA,NA,NA,NA,111,"pteAle1;pteVam1","internal",0.105708
+"eptFus1-myoDav1",NA,NA,NA,NA,NA,NA,NA,112,"eptFus1;myoDav1;myoLuc2","internal",0.104754
+"myoDav1-myoLuc2",NA,NA,NA,NA,NA,NA,NA,113,"myoDav1;myoLuc2","internal",0.0236592
+"eriEur2-sorAra2",NA,NA,NA,NA,NA,NA,NA,114,"conCri1;eriEur2;sorAra2","internal",0.0360627
+"sorAra2-conCri1",NA,NA,NA,NA,NA,NA,NA,115,"conCri1;sorAra2","internal",0.0166079
+"loxAfr3-dasNov3",NA,NA,NA,NA,NA,NA,NA,116,"chrAsi1;dasNov3;echTel2;eleEdw1;loxAfr3;oryAfe1;triMan1","internal",0.0071811
+"loxAfr3-oryAfe1",NA,NA,NA,NA,NA,NA,NA,117,"chrAsi1;echTel2;eleEdw1;loxAfr3;oryAfe1;triMan1","internal",0.055983
+"loxAfr3-chrAsi1",NA,NA,NA,NA,NA,NA,NA,118,"chrAsi1;echTel2;eleEdw1;loxAfr3;triMan1","internal",0.00370578
+"loxAfr3-triMan1",NA,NA,NA,NA,NA,NA,NA,119,"eleEdw1;loxAfr3;triMan1","internal",0.016517
+"loxAfr3-eleEdw1",NA,NA,NA,NA,NA,NA,NA,120,"eleEdw1;loxAfr3","internal",0.00281432
+"chrAsi1-echTel2",NA,NA,NA,NA,NA,NA,NA,121,"chrAsi1;echTel2","internal",0.0223786
+"monDom5-sarHar1",NA,NA,NA,NA,NA,NA,NA,122,"macEug2;monDom5;sarHar1","internal",0.21065
+"sarHar1-macEug2",NA,NA,NA,NA,NA,NA,NA,123,"macEug2;sarHar1","internal",0.0276415

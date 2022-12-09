@@ -5,7 +5,7 @@
 ############################################################
 
 readTree <- function(tree_file) {
-#   cat(as.character(Sys.time()), " | Fig4: Reading tree:", ratite_tree_file, "\n")
+# In case we need to read the species tree in nexus format (unused)
 
   ratite_tree = read.tree(file=ratite_tree_file)
 
@@ -22,6 +22,8 @@ readTree <- function(tree_file) {
 #########################
 
 adjustLabels <- function(mapping_file, orig_node_labels) {
+# Reads label map file to convert old ratite node labels to new generic node labels for simulation cases
+
   label_map = read.csv(mapping_file, header=T, sep="\t")
   # Read the label map file
 
@@ -45,40 +47,56 @@ adjustLabels <- function(mapping_file, orig_node_labels) {
 
 #########################
 
-assignTargets <- function(new_node_labels){
-  target = nontarget = list() #(1-1,2-8,2-5,2-6)
-  target[[1]] = c()
-  nontarget[[1]] = new_node_labels
-  target[[2]] = c("aptHaa","aptOwe","aptRow","rheAme","rhePen","aptHaa.aptOwe", "aptHaa.aptRow","rheAme.rhePen")
-  target[[3]] = c("aptHaa","aptOwe", "aptRow","casCas","droNov","aptHaa.aptOwe", "aptHaa.aptRow","casCas.droNov","aptHaa.casCas")
-  target[[4]] = c("aptHaa","aptOwe", "aptRow","casCas","droNov","rheAme","rhePen","anoDid","strCam","aptHaa.aptOwe", "aptHaa.aptRow","casCas.droNov","aptHaa.casCas", "rheAme.rhePen","aptHaa.rheAme")
+assignTargets <- function(old_node_labels, new_node_labels){
+# Compiles lists and label mappings of target branches for each simulation scenario
 
-  ## Target linaeges for each simulation
-  ## 2 = case 2 = single paraphyletic = panel C
-  ## 3 = case 3 = monophyletic = panel A
-  ## 4 = case 4 = multi-paraphyletic = panel B
-  ######################
+  target_list = list()
+  target_list[[2]] = c("aptHaa","aptOwe","aptRow","rheAme","rhePen","aptHaa.aptOwe", "aptHaa.aptRow","rheAme.rhePen")
+  target_list[[3]] = c("aptHaa","aptOwe", "aptRow","casCas","droNov","aptHaa.aptOwe", "aptHaa.aptRow","casCas.droNov","aptHaa.casCas")
+  target_list[[4]] = c("aptHaa","aptOwe", "aptRow","casCas","droNov","rheAme","rhePen","anoDid","strCam","aptHaa.aptOwe", "aptHaa.aptRow","casCas.droNov","aptHaa.casCas", "rheAme.rhePen","aptHaa.rheAme")
+  # Lists of target branches with old node labels for:
+  # Case 2 / scenario 8 / label B / two independent accelerations
+  # Case 3 / scenario 5 / label A / single acceleration
+  # Case 4 / scenario 6 / label C / three independent accelerations
 
-  case = c("1-1","2-8","2-5","2-6")
-  target_B = list()
-  nontarget_B = list()
-  target_B[[1]] = nontarget_B[[1]]=c()
-  target_B[[2]] = c(10:14,19:21)
-  target_B[[3]] = c(10:18)
-  target_B[[4]] = c(1,10:22,24)
-  for(i in 2:4){
-    nontarget_B[[i]] = seq(1,31)
-    nontarget_B[[i]] = nontarget_B[[i]][-target_B[[i]]]
+  case_targets = list()
+  # Initialize new case_targets list that stores targets and non-targets for each case with old and new node labels
+
+  for(c in c(2,3,4)){
+    case_targets[[c]] = list()
+    # The current case will have its own list of targets and non-targets
+
+    cur_targets = target_list[[c]]
+    cur_target_inds = match(cur_targets, old_node_labels)
+    cur_targets_new = new_node_labels[cur_target_inds]
+    # Get the target labels from the current case and match with new labels
+
+    targets = data.frame("old.labels"=cur_targets, "inds"=cur_target_inds, "new.labels"=cur_targets_new)
+    # Compile the old and new labels into a data frame
+
+    case_targets[[c]][["targets"]] = targets
+    # Add the targets to the current case_targets list
+
+    cur_non_targets = old_node_labels[!old_node_labels %in% cur_targets]
+    cur_non_target_inds = match(cur_non_targets, old_node_labels)
+    cur_non_targets_new = new_node_labels[cur_non_target_inds]
+    # Get the non-target labels from the current case and match with new labels
+
+    non_targets = data.frame("old.labels"=cur_non_targets, "inds"=cur_non_target_inds, "new.labels"=cur_non_targets_new)
+    # Compile the old and new labels into a data frame
+
+    case_targets[[c]][["non.targets"]] = non_targets
+    # Add the non-targets to the current case_targets list
   }
-  ## Targets for the BEAST runs
-  ######################  
-  
-  return(list(target, nontarget, target_B, nontarget_B))
+
+  return(case_targets)
 }
 
 #########################
 
 readElemLik <- function(elem_lik_file, subset_cols=FALSE) {
+# Reads an elem_lik file from PhyloAcc and determines model with max probability
+
     elem_lik = as.matrix(read.table(elem_lik_file, header=T))
 
     if(subset_cols){
@@ -96,7 +114,9 @@ readElemLik <- function(elem_lik_file, subset_cols=FALSE) {
 
 #########################
 
-readPostZ <- function(m1_postz_file, m2_postz_file, cur_elem_lik){
+readPostZ <- function(m1_postz_file, m2_postz_file, cur_elem_lik, use_m2=FALSE){
+# Reads a postZ files from PhyloAcc and combines them in a df with the probabilities
+# from the model that has the highest likelihood
 
   m1_postz = read.table(m1_postz_file, header=T, row.names=1)
   m1_postz = m1_postz[order(as.numeric(rownames(m1_postz))),]
@@ -113,95 +133,89 @@ readPostZ <- function(m1_postz_file, m2_postz_file, cur_elem_lik){
   m2_ind = which(cur_elem_lik$optM == 2)
   # Get the row numbers of the loci that have optimal model 0 or 2
   
-  if(length(m0_ind) > 0){
-    opt_postz[m0_ind,] = 0
-  }
-  # Replace rows in the main st rate df that have optimal model 0 with 0
-  
-  if(length(m2_ind > 0)){
-    opt_postz[m2_ind,] = m2_postz[m2_ind,]
+  if(use_m2){
+    opt_postz = m2_postz
+    # For some instances comparing M2 performance, just use all rows from
+    # the m2 file
+  }else{
+    if(length(m0_ind) > 0){
+        opt_postz[m0_ind,] = 0
+    }
+    # Replace rows in the main df that have optimal model 0 with 0
+    
+    if(length(m2_ind > 0)){
+        opt_postz[m2_ind,] = m2_postz[m2_ind,]
+    }
+    # Replace the rows in the main df that have optimal model 2 witih
+    # the probabilities from model 2
   }
 
   return(opt_postz)
-
 }
 
 #########################
 
-adjustCols <- function(st_opt_postz, gt_opt_postz, targets, old_colnames, new_colnames) {
+adjustCols <- function(st_opt_postz, gt_opt_postz, old_colnames, new_colnames) {
+# Selects probabilities for each branch in state 2 and removes certain columns
+
     st_opt_postz = st_opt_postz[,-seq(1,17)]
     st_opt_postz = st_opt_postz[,grepl("_3", colnames(st_opt_postz))]
 
     gt_opt_postz = gt_opt_postz[,-seq(1,17)]
     gt_opt_postz = gt_opt_postz[,grepl("_3", colnames(gt_opt_postz))]
-    # Get only the accelerated rates for non-outgroup branches
+    # Get only the probabilites for z=2 for non-outgroup branches
 
     colnames(st_opt_postz) = colnames(gt_opt_postz) = substr(colnames(gt_opt_postz), 1, str_length(colnames(gt_opt_postz))-2)
     # Remove the _3 label from the column names so columns match node labels
 
     outRelated=c('taeGut.aptFor','taeGut.galGal','taeGut.aptHaa')
-    for(i in 1:length(outRelated)){
-        ind = which(colnames(gt_opt_postz) == outRelated[i])
-        gt_opt_postz = gt_opt_postz[,-ind]
-        st_opt_postz = st_opt_postz[,-ind]
-    }
+    st_opt_postz = select(st_opt_postz, -outRelated)
+    gt_opt_postz = select(gt_opt_postz, -outRelated)
     # Remove remaining branches leading to the outgroup
-
-    target_indices = rep(NA, length(targets))
-    for(i in 1:length(target_indices)){
-        target_indices[i] = which(old_colnames == targets[i])
-    }
-    # Get the indices of the target branches
 
     colnames(gt_opt_postz) = colnames(st_opt_postz) = new_colnames
     # Rename columns with new node labels
 
-    return(list(st_opt_postz, gt_opt_postz, target_indices))
-
+    return(list(st_opt_postz, gt_opt_postz))
 }
 
 #########################
 
-readBeast <- function(beast_file, target_indices, old_colnames, new_colnames) {
-  
+readBeast <- function(beast_file, cur_case_targets, old_colnames, new_colnames, theta=FALSE) {
+# Reads output from BEAST runs already processed into an R data format
+
   load(beast_file)
   # Load beast results as "res"
 
-  beast_targets = res$node
-  beast_non_targets = res$`non-node`
-  # Get the results from the target and non-target branches
+  beast_targets = as.data.frame(res$node)
+  beast_non_targets = as.data.frame(res$`non-node`)
+  # Get the results for the target and non-target lineages
 
-  for(i in 1:ncol(beast_targets)) {
-    tmp = colnames(beast_targets)[i]
+  if(!theta){
+    beast_targets = select(beast_targets, cur_case_targets[["targets"]]$old.labels)
+    names(beast_targets) = cur_case_targets[["targets"]]$new.labels
+    # Select target lineages and rename with new labels
 
-    if(str_length(tmp) > 6){
-      colnames(beast_targets)[i] = paste0("(", new_colnames[which(old_colnames==substr(tmp,1,6))], ",", new_colnames[which(old_colnames==substr(tmp,8,8+6))], ")")
-    }else{
-      colnames(beast_targets)[i] = new_colnames[which(old_colnames==tmp)[1]]
-    }
-  }
-  # Convert target names to new node labels
-  
-  for(i in 1:ncol(beast_non_targets)){
-    tmp = colnames(beast_non_targets)[i]
-    if(str_length(tmp) > 6){
-      colnames(beast_non_targets)[i] = paste0("(", new_colnames[which(old_colnames==substr(tmp,1,6))], ",", new_colnames[which(old_colnames==substr(tmp,8,8+6))], ")")
-    }else{
-      colnames(beast_non_targets)[i] = new_colnames[which(old_colnames==tmp)[1]]
-    }
-  }
-  # Convert non-target names to new node labels
-  
-  beast_targets = beast_targets[,colnames(gt_opt_postz)[target_indices]]
-  if(c == 3){
-    beast_non_targets = beast_non_targets[,seq(1,10)] #2-6
+    beast_non_targets = select(beast_non_targets, cur_case_targets[["non.targets"]]$old.labels)
+    names(beast_non_targets) = cur_case_targets[["non.targets"]]$new.labels
+    # Select non-target lineages and rename with new labels
   }else{
-    beast_non_targets = beast_non_targets[,seq(1,17)] #8 & 5 
+    # For the theta figures (10), the beast data is loaded slightly differently
+
+    beast_all = cbind(beast_targets, beast_non_targets)
+    beast_all = beast_all[, old_colnames]
+    # Combine the target and non-target lineages and select the correct rows
+
+    names(beast_all) = new_colnames
+    # Rename columns with new labels
+
+    beast_targets = select(beast_all, cur_case_targets[["targets"]]$new.labels)
+    beast_non_targets = select(beast_all, cur_case_targets[["non.targets"]]$new.labels)
+    # Separate target and non-target lineages
   }
-    
-  beast_non_targets = beast_non_targets[,colnames(gt_opt_postz)[-target_indices]]
+
   rownames(beast_targets) = rownames(beast_non_targets) = as.character(seq(0,99)) 
-  # Subset the data based on the current scenario
+  # Add common row names
 
   return(list(beast_targets, beast_non_targets))
 }

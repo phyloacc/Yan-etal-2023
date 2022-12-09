@@ -7,21 +7,19 @@
 this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 
+############################################################
+
 library(ggplot2)
 library(cowplot)
 library(data.table)
 library(dplyr)
-library(ape)
-#library(tidyr)
 library(ggbeeswarm)
-#library(ggsignif)
-#library(pROC)
-#library(PRROC)
+library(stringr)
 library(here)
 source(here("scripts", "lib", "design.r"))
 source(here("scripts", "lib", "read_results.r"))
 
-## KEY
+## KEY from old variable names
 ## nameLabel -> node_labels
 ## birdname -> label_map
 ## namePrint -> new_node_labels
@@ -37,12 +35,13 @@ ratite_tree_file = here("data", "ratite.tree")
 
 label_map_file = here("data", "SimulatedData", "Name_Label_Mapping.txt")
 
-node_labels = c("aptHaa","aptOwe", "aptRow","casCas","droNov","rheAme","rhePen","cryCin","tinGut","eudEle", "notPer","anoDid","strCam",
-                "aptHaa.aptOwe", "aptHaa.aptRow","casCas.droNov","aptHaa.casCas", "rheAme.rhePen","aptHaa.rheAme","cryCin.tinGut",
-                "eudEle.notPer","cryCin.eudEle","cryCin.anoDid", "aptHaa.cryCin","aptHaa.strCam")
+node_labels = c("aptHaa", "aptOwe", "aptRow", "casCas", "droNov", "rheAme", "rhePen", "cryCin", "tinGut", "eudEle", "notPer", "anoDid", "strCam",
+                "aptHaa.aptOwe", "aptHaa.aptRow", "casCas.droNov", "aptHaa.casCas", "rheAme.rhePen", "aptHaa.rheAme", "cryCin.tinGut",
+                "eudEle.notPer", "cryCin.eudEle", "cryCin.anoDid", "aptHaa.cryCin", "aptHaa.strCam")
 
-save_fig = T
+save_fig = F
 
+# Options and inputs
 ############################################################
 
 cat(as.character(Sys.time()), " | Fig4: Adjusting node labels...\n")
@@ -54,11 +53,7 @@ new_node_labels = adjustLabels(label_map_file, node_labels)
 
 cat(as.character(Sys.time()), " | Fig4: Assigning target lineages...\n")
 
-assign_targets_result = assignTargets(new_node_labels)
-target = assign_targets_result[[1]]
-nontarget = assign_targets_result[[2]]
-target_B = assign_targets_result[[3]]
-nontarget_B = assign_targets_result[[4]]
+case_targets = assignTargets(node_labels, new_node_labels)
 
 ## Assign target lineages
 ############################################################
@@ -83,9 +78,9 @@ cat(as.character(Sys.time()), " | Fig4: Reading postz files and generating plots
 
 case_labels = c("A", "B", "C")
 ## CASE LABELS DO NOT CORRESPOND TO PANEL LABELS
-## 2 = case 2 = single paraphyletic = panel B
-## 3 = case 3 = monophyletic = panel A
-## 4 = case 4 = multi-paraphyletic = panel C
+# Case 2 / scenario 8 / label B / two independent accelerations
+# Case 3 / scenario 5 / label A / single acceleration
+# Case 4 / scenario 6 / label C / three independent accelerations
 
 scenarios = c("8", "5", "6")
 # This is how the files for the different cases are labeled...
@@ -94,6 +89,7 @@ method_order = c("PhyloAcc-GT", "PhyloAcc", "*BEAST2")
 # Ordering for the legend
 
 titles = c("Single acceleration", "Two independent accelerations", "Three independent accelerations")
+# Titles for the rows of the figure
 
 targ_p_list = list()
 non_targ_p_list = list()
@@ -102,6 +98,9 @@ p_list = list()
 
 for(c in 1:3){
   
+  cur_case_targets = case_targets[[c+1]]
+  # Look up the current set of target and non-target lineages
+
   st_dir = paste("PhyloAcc_result_Case", case_labels[c], sep="")
   gt_dir = paste("PhyloAcc-GT_result_Case", case_labels[c], sep="")
   beast_dir = paste("starBeast2_Result_Case", case_labels[c], sep="")
@@ -141,59 +140,61 @@ for(c in 1:3){
   
   cat(as.character(Sys.time()), " | ------->", case_labels[c], ": Adjusting columns\n")
 
-  adjust_cols_result = adjustCols(st_opt_postz, gt_opt_postz, target[[c+1]], node_labels, new_node_labels)
+  adjust_cols_result = adjustCols(st_opt_postz, gt_opt_postz, node_labels, new_node_labels)
   st_opt_postz = adjust_cols_result[[1]]
   gt_opt_postz = adjust_cols_result[[2]]
-  targ_ind = adjust_cols_result[[3]]
+  #targ_ind = adjust_cols_result[[3]]
 
   # Organize column names
   ##########
   
   beast_file_path = here("results", "simulations", beast_dir, beast_file)
   
-  read_beast_results = readBeast(beast_file_path, targ_ind, node_labels, new_node_labels)
+  cat(as.character(Sys.time()), " | ------->", case_labels[c], ": Reading BEAST results:", beast_file_path, "\n")
+
+  read_beast_results = readBeast(beast_file_path, cur_case_targets, node_labels, new_node_labels)
   beast_targets = read_beast_results[[1]]
   beast_non_targets = read_beast_results[[2]]
-  
+
   # Load BEAST results
   ##########
   
   cat(as.character(Sys.time()), " | ------->", case_labels[c], ": Converting target lineages to long data\n")
 
-  st_targ = st_opt_postz[,targ_ind]
+  st_targ = select(st_opt_postz, cur_case_targets[["targets"]]$new.labels)
   st_targ_long = reshape2::melt(st_targ)
   st_targ_long$Method = "PhyloAcc"
-  # Convert from wide to long for st target branches and add a label for Metho
+  # Convert from wide to long for st target branches and add a label for Method
 
-  gt_targ = gt_opt_postz[,targ_ind]
+  gt_targ = select(gt_opt_postz, cur_case_targets[["targets"]]$new.labels)
   gt_targ_long = reshape2::melt(gt_targ)
   gt_targ_long$Method = "PhyloAcc-GT"
-  # Convert from wide to long for gt target branches and add a label for Metho
+  # Convert from wide to long for gt target branches and add a label for Method
 
-  beast_targ_long = reshape2::melt(beast_targets)[,-1]
+  beast_targ_long = reshape2::melt(beast_targets)
   names(beast_targ_long)[1] = "variable"
   beast_targ_long$Method = "*BEAST2"
 
   target_results = rbind(st_targ_long, gt_targ_long, beast_targ_long)
   names(target_results)[1:2] = c("species", "acc")
   # Combine st and gt results
-  
+
   # Select target branches and combine st and gt results
   ##########
   
   cat(as.character(Sys.time()), " | ------->", case_labels[c], ": Converting non-target linages to long data\n")
   
-  st_non_targ_long = st_opt_postz[,-targ_ind]
+  st_non_targ_long = select(st_opt_postz, cur_case_targets[["non.targets"]]$new.labels)
   st_non_targ_long = reshape2::melt(st_non_targ_long)
   st_non_targ_long$Method = "PhyloAcc"
-  # Convert from wide to long for st target branches and add a label for Metho
+  # Convert from wide to long for st target branches and add a label for Method
   
-  gt_non_targ_long = gt_opt_postz[,-targ_ind]
+  gt_non_targ_long = select(gt_opt_postz, cur_case_targets[["non.targets"]]$new.labels)
   gt_non_targ_long = reshape2::melt(gt_non_targ_long)
   gt_non_targ_long$Method = "PhyloAcc-GT"
-  # Convert from wide to long for gt target branches and add a label for Metho
+  # Convert from wide to long for gt target branches and add a label for Method
   
-  beast_non_targ_long = reshape2::melt(beast_non_targets)[,-1]
+  beast_non_targ_long = reshape2::melt(beast_non_targets)
   names(beast_non_targ_long)[1] = "variable"
   beast_non_targ_long$Method = "*BEAST2"
   
@@ -228,6 +229,7 @@ for(c in 1:3){
     fig_legend = get_legend(target_p)
     target_p = target_p + theme(legend.position="none")
   }
+  # Get the legend from the first plot
   
   #targ_p_list[[c]] = p
   
@@ -266,6 +268,7 @@ for(c in 1:3){
     title = titles[1]
     h_adj = -2
   }
+  # Title and labels depending on panel
   
   p_title = ggdraw() + 
     draw_label(
@@ -279,15 +282,14 @@ for(c in 1:3){
       # so title is aligned with left edge of first plot
       plot.margin = margin(0, 0, 0, 0)
     )
+  # Title for current row
+  
   p_combo = plot_grid(target_p, non_target_p, ncol=2)
   p_panel = plot_grid(p_title, p_combo, nrow=2, labels=c(panel_label, ""), label_y=1, rel_heights=c(0.2,1))
   print(p_panel)
   p_list[[panel_label]] = p_panel
   # Combine the target and non-target plots
   
-
-
-
   # Non-targets
   #####
   # Generate boxplots
@@ -297,17 +299,13 @@ for(c in 1:3){
 cat(as.character(Sys.time()), " | Fig4: Combining plots...\n")
 
 fig_main = plot_grid(plotlist=p_list[c("A", "B", "C")], nrow=3)
-
-#fig_left = plot_grid(plotlist=targ_p_list, nrow=3, labels=c("A", "B", "C"))
-#fig_right = plot_grid(plotlist=non_targ_p_list, nrow=3)
-#fig_main = plot_grid(fig_left, fig_right, ncol=2)
 fig = plot_grid(fig_main, fig_legend, nrow=2, rel_heights=c(1, 0.1))
 
 # Combine the plots
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig4.png"
+  figfile = "../figs/fig4.pdf"
   cat(as.character(Sys.time()), " | Fig4: Saving figure:", figfile, "\n")
   ggsave(filename=figfile, fig, width=8, height=8, units="in")
 }
