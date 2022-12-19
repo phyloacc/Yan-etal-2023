@@ -243,7 +243,7 @@ for(theta_scale in c(3,6,10)){
   target_p = ggplot(target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, alpha=0.1) +
-    xlab("") +
+    xlab("Nodes simulated with acceleration") +
     ylab("P(acceleration)") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -251,8 +251,9 @@ for(theta_scale in c(3,6,10)){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=12),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   #panel.grid.major.x = element_line(color="#d3d3d3", size=0.25))
   
   if(theta_scale == 3){
@@ -273,7 +274,7 @@ for(theta_scale in c(3,6,10)){
   non_target_p = ggplot(non_target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, fill="transparent") +
-    xlab("") +
+    xlab("Nodes simulated without acceleration") +
     ylab("") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -281,21 +282,25 @@ for(theta_scale in c(3,6,10)){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=10),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   
   #non_targ_p_list[[c]] = p
   
   
-  panel_label = "C"
+  row_label = "C"
+  panel_labels = c("E","F")
   title = titles[3]
   h_adj = -1.5
   if(theta_scale == 3){
-    panel_label = "A"
+    row_label = "A"
+    panel_labels = c("A", "B")
     title = titles[1]
     h_adj = -1.6
   }else if(theta_scale == 6){
-    panel_label = "B"
+    row_label = "B"
+    panel_labels = c("C","D")
     title = titles[2]
     h_adj = -1.6
   }
@@ -312,10 +317,10 @@ for(theta_scale in c(3,6,10)){
       # so title is aligned with left edge of first plot
       plot.margin = margin(0, 0, 0, 0)
     )
-  p_combo = plot_grid(target_p, non_target_p, ncol=2)
-  p_panel = plot_grid(p_title, p_combo, nrow=2, labels=c(panel_label, ""), label_y=1, rel_heights=c(0.2,1))
+  p_combo = plot_grid(target_p, non_target_p, ncol=2, labels=panel_labels, label_y=1)
+  p_panel = plot_grid(p_combo, p_title, nrow=2, rel_heights=c(1,0.2))
   print(p_panel)
-  p_list[[panel_label]] = p_panel
+  p_list[[row_label]] = p_panel
   # Combine the target and non-target plots
   
   
@@ -342,7 +347,7 @@ print(fig)
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig10.png"
+  figfile = "../figs/fig10.pdf"
   cat(as.character(Sys.time()), " | Fig10: Saving figure:", figfile, "\n")
   ggsave(filename=figfile, fig, width=8, height=8, units="in")
 }

@@ -212,7 +212,7 @@ for(c in 1:3){
   target_p = ggplot(target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, alpha=0.1) +
-    xlab("") +
+    xlab("Nodes simulated with acceleration") +
     ylab("P(acceleration)") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -220,8 +220,9 @@ for(c in 1:3){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=12),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
           #panel.grid.major.x = element_line(color="#d3d3d3", size=0.25))
   
   if(c == 1){
@@ -243,7 +244,7 @@ for(c in 1:3){
   non_target_p = ggplot(non_target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, fill="transparent") +
-    xlab("") +
+    xlab("Nodes simulated without acceleration") +
     ylab("") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -251,20 +252,67 @@ for(c in 1:3){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=10),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   
   #non_targ_p_list[[c]] = p
   
-  panel_label = "C"
+  
+  target_results$grouping = "Accelerated"
+  non_target_results$grouping = "Non-accelerated"
+  all_results = rbind(target_results, non_target_results)
+  all_results$Method = factor(all_results$Method, levels=method_order)
+  
+  num_accel = nrow(cur_case_targets$targets)
+  num_non_accel = nrow(cur_case_targets$non.targets)
+  
+  red = rep("red", num_accel)
+  black = rep("black", num_non_accel)
+  
+  all_cols = c(red, black)
+  
+  line_y = -0.7
+  label_y = line_y - 0.1
+  
+  all_p = ggplot(all_results, aes(x=species, y=acc, color=Method, fill=Method)) +
+    geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
+    geom_boxplot(outlier.shape=NA, fill="transparent") +
+    #geom_text(position = position_dodge(width = 1), aes(x=grouping, y=0), label=grouping) +
+    #facet_wrap(~grouping, strip.position = "bottom", scales = "free_x") +
+    xlab("") +
+    ylab("") +
+    scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
+    bartheme() +
+    theme(legend.position="none",
+          legend.title=element_text(size=10),
+          legend.text=element_text(size=8),
+          axis.text.x=element_text(angle=40, hjust=1, size=8, color=all_cols),
+          axis.title.y=element_text(size=10),
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"),
+          panel.spacing = unit(0, "lines"), 
+          strip.background = element_blank(),
+          strip.placement = "outside") +
+    coord_cartesian(xlim=c(1,25), ylim=c(0,1), clip="off") +
+    annotate("segment", x = 1, xend = num_accel, y = line_y, yend = line_y) +
+    annotate("text", x = num_accel/2, y = label_y, label="Accelerated") +
+    annotate("segment", x = num_accel+1, xend = num_accel+num_non_accel, y = line_y, yend = line_y) +
+    annotate("text", x = ((num_accel+1)+(num_accel+num_non_accel))/2, y = label_y, label="Non-Accelerated")
+  
+  print(all_p)
+  
+  row_label = "C"
+  panel_labels = c("E","F")
   title = titles[3]
   h_adj = -1
   if(c == 1){
-    panel_label = "B"
+    row_label = "B"
+    panel_labels = c("C","D")
     title = titles[2]
     h_adj = -1.05
   }else if(c == 2){
-    panel_label = "A"
+    row_label = "A"
+    panel_labels = c("A", "B")
     title = titles[1]
     h_adj = -2
   }
@@ -284,10 +332,11 @@ for(c in 1:3){
     )
   # Title for current row
   
-  p_combo = plot_grid(target_p, non_target_p, ncol=2)
-  p_panel = plot_grid(p_title, p_combo, nrow=2, labels=c(panel_label, ""), label_y=1, rel_heights=c(0.2,1))
+  p_combo = plot_grid(target_p, non_target_p, ncol=2, labels=panel_labels, label_y=1)
+  p_panel = plot_grid(p_combo, p_title, nrow=2, rel_heights=c(1,0.2))
+  #p_panel = plot_grid(p_title, all_p, nrow=2, rel_heights=c(0.2,1))
   print(p_panel)
-  p_list[[panel_label]] = p_panel
+  p_list[[row_label]] = p_panel
   # Combine the target and non-target plots
   
   # Non-targets
@@ -300,6 +349,7 @@ cat(as.character(Sys.time()), " | Fig4: Combining plots...\n")
 
 fig_main = plot_grid(plotlist=p_list[c("A", "B", "C")], nrow=3)
 fig = plot_grid(fig_main, fig_legend, nrow=2, rel_heights=c(1, 0.1))
+print(fig)
 
 # Combine the plots
 ######################

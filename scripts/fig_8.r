@@ -203,7 +203,7 @@ for(c in 1:3){
   target_p = ggplot(target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, alpha=0.1) +
-    xlab("") +
+    xlab("Nodes simulated with acceleration") +
     ylab("P(acceleration)") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -211,8 +211,9 @@ for(c in 1:3){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=12),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   #panel.grid.major.x = element_line(color="#d3d3d3", size=0.25))
   
   if(c == 1){
@@ -232,7 +233,7 @@ for(c in 1:3){
   non_target_p = ggplot(non_target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, fill="transparent") +
-    xlab("") +
+    xlab("Nodes simulated without acceleration") +
     ylab("") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -240,20 +241,24 @@ for(c in 1:3){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=10),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   
   #non_targ_p_list[[c]] = p
   
-  panel_label = "C"
+  row_label = "C"
+  panel_labels = c("E","F")
   title = titles[3]
   h_adj = -1
   if(c == 1){
-    panel_label = "B"
+    row_label = "B"
+    panel_labels = c("C","D")
     title = titles[2]
     h_adj = -1.05
   }else if(c == 2){
-    panel_label = "A"
+    row_label = "A"
+    panel_labels = c("A", "B")
     title = titles[1]
     h_adj = -2
   }
@@ -273,9 +278,9 @@ for(c in 1:3){
     )
   # Title for current row
   
-  p_combo = plot_grid(target_p, non_target_p, ncol=2)
-  p_panel = plot_grid(p_title, p_combo, nrow=2, labels=c(panel_label, ""), label_y=1, rel_heights=c(0.2,1))
-  p_list[[panel_label]] = p_panel
+  p_combo = plot_grid(target_p, non_target_p, ncol=2, labels=panel_labels, label_y=1)
+  p_panel = plot_grid(p_combo, p_title, nrow=2, rel_heights=c(1,0.2))
+  p_list[[row_label]] = p_panel
   # Combine the target and non-target plots
   
   # Non-targets

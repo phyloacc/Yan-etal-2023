@@ -53,7 +53,8 @@ scenarios = c(1, 2, 3)
 
 target_sets = c(3, 4, 3)
 file_labels = c("NC_true5spec8", "trueC4inputC2", "NC_true5spec4")
-panel_labels = c("A", "B", "C")
+panel_labels = list(c("A", "B"), c("C", "D"), c("E", "F"))
+row_labels = c("A", "B", "C")
 # Initialize scenario variables and names...
 
 
@@ -191,7 +192,7 @@ for(s in scenarios){
   target_p = ggplot(target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, alpha=0.1) +
-    xlab("") +
+    xlab("Nodes simulated with acceleration") +
     ylab("P(acceleration)") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -199,8 +200,9 @@ for(s in scenarios){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8, color=target_x_col[[s]]),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=12),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   
   if(s == 1){
     target_p = target_p + theme(legend.position="bottom")
@@ -220,7 +222,7 @@ for(s in scenarios){
   non_target_p = ggplot(non_target_results, aes(x=species, y=acc, color=Method, fill=Method)) +
     geom_quasirandom(size=1, width=0.1, alpha=0.1, dodge.width=0.8) +
     geom_boxplot(outlier.shape=NA, fill="transparent") +
-    xlab("") +
+    xlab("Nodes simulated without acceleration") +
     ylab("") +
     scale_color_manual(values=c("#CC79A7","#56B4E9","#F0E442")) +
     bartheme() +
@@ -228,8 +230,9 @@ for(s in scenarios){
           legend.title=element_text(size=10),
           legend.text=element_text(size=8),
           axis.text.x=element_text(angle=40, hjust=1, size=8, color=non_target_x_col[[s]]),
+          axis.title.x=element_text(size=10),
           axis.title.y=element_text(size=12),
-          plot.margin=margin(1,0.1,-0.8,0.1, unit="cm"))
+          plot.margin=margin(1,0.1,0,0.1, unit="cm"))
   
   #print(non_target_p)
   # Non-targets
@@ -249,9 +252,9 @@ for(s in scenarios){
     )
   # Current row title
   
-  p_combo = plot_grid(target_p, non_target_p, ncol=2)
-  p_panel = plot_grid(p_title, p_combo, nrow=2, labels=c(panel_labels[[s]], ""), label_y=1, rel_heights=c(0.2,1))
-  p_list[[panel_labels[s]]] = p_panel
+  p_combo = plot_grid(target_p, non_target_p, ncol=2, labels=panel_labels[[s]])
+  p_panel = plot_grid(p_combo, p_title, nrow=2, rel_heights=c(1,0.2))
+  p_list[[row_labels[s]]] = p_panel
   # Combine the target and non-target plots
   
   # Generate boxplots
@@ -269,7 +272,7 @@ print(fig)
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig6.pdf"
+  figfile = "../figs/fig6.png"
   cat(as.character(Sys.time()), " | Fig6: Saving figure:", figfile, "\n")
   ggsave(filename=figfile, fig, width=8, height=8, units="in")
 }

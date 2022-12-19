@@ -183,7 +183,7 @@ for(i in 1:nrow(plot_cases)){
     ggtitle(titles[i]) +
     xlab("") +
     ylab("") +
-    scale_color_manual("Method", labels=c("Species tree", "Gene tree"), values=corecol(pal="wilke", numcol=2)) +
+    scale_color_manual("Method", labels=c("PhyloAcc", "PhyloAcc-GT"), values=corecol(pal="wilke", numcol=2)) +
     bartheme() +
     theme(legend.position="none",
           axis.text.x=element_text(angle=40, hjust=1, size=10),
@@ -229,7 +229,7 @@ for(i in 1:nrow(plot_cases)){
     #ggtitle("\n\n") +
     xlab("") +
     ylab("") +
-    scale_color_manual("Method", labels=c("Species tree", "Gene tree"), values=corecol(pal="wilke", numcol=2)) +
+    scale_color_manual("Method", labels=c("PhyloAcc", "PhyloAcc-GT"), values=corecol(pal="wilke", numcol=2)) +
     bartheme() +
     theme(legend.position="none",
           legend.title=element_text(size=10),
@@ -275,9 +275,9 @@ print(fig)
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig9.png"
+  figfile = "../figs/fig9.pdf"
   cat(as.character(Sys.time()), " | Fig9: Saving figure:", figfile, "\n")
-  ggsave(filename=figfile, fig, width=6, height=6 ,units="in")
+  ggsave(filename=figfile, fig, width=6, height=6, units="in")
 }
 
 # Save the figure

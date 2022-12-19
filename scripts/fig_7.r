@@ -23,7 +23,7 @@ simdir = here("results", "simulations", "Simu1")
 # The directory with the simulation files named according to
 # case
 
-save_fig = F
+save_fig = T
 # Whether or not to save the final figure
 
 # Options
@@ -171,7 +171,7 @@ for(i in 1:nrow(plot_cases)){
     ggtitle(titles[i]) +
     xlab("") +
     ylab("") +
-    scale_color_manual("Method", labels=c("Species tree", "Gene tree"), values=corecol(pal="wilke", numcol=2)) +
+    scale_color_manual("Method", labels=c("PhyloAcc", "PhyloAcc-GT"), values=corecol(pal="wilke", numcol=2)) +
     bartheme() +
     theme(legend.position="none",
           axis.text.x=element_text(angle=40, hjust=1, size=10),
@@ -203,7 +203,7 @@ for(i in 1:nrow(plot_cases)){
     #ggtitle("\n\n") +
     xlab("") +
     ylab("") +
-    scale_color_manual("Method", labels=c("Species tree", "Gene tree"), values=corecol(pal="wilke", numcol=2)) +
+    scale_color_manual("Method", labels=c("PhyloAcc", "PhyloAcc-GT"), values=corecol(pal="wilke", numcol=2)) +
     bartheme() +
     theme(legend.position="none",
           legend.title=element_text(size=10),
@@ -255,7 +255,7 @@ print(fig)
 ######################
 
 if(save_fig){
-  figfile = "../figs/fig7.png"
+  figfile = "../figs/fig7.pdf"
   cat(as.character(Sys.time()), " | Fig7: Saving figure:", figfile, "\n")
   ggsave(filename=figfile, fig, width=7.5, height=5.5, units="in")
 }
