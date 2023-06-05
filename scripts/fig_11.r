@@ -89,7 +89,7 @@ cputime_color_p = ggplot(sim_data_avg, aes(x=length, y=avg.cputime, color=as.cha
   geom_line(size=1, alpha=0.5) +
   geom_point(size=3, alpha=0.5) +
   #scale_color_viridis(name='# of species in tree', option = "C", discrete=T) +
-  scale_color_manual(name='# of species in tree: ', values=cols) +
+  scale_color_manual(name='# of species in tree: ', breaks=c("9", "13", "17"), values=cols) +
   scale_linetype_manual(name='PhyloAcc method', labels=c("Gene\ntree", "Species\ntree"), values=c("solid", 22)) +
   xlab("Element length (bp)") +
   ylab("Avg. CPU time\nper element (minutes)") +
@@ -254,7 +254,9 @@ scf_avg_runtime_p = ggplot(scf_avg_counts, aes(x=cutoff, y=runtime, group=thread
         legend.text=element_text(size=6),
         legend.box="vertical",
         plot.margin=unit(c(0.5,0.5,0.5,0), "cm")) +
-  guides(colour = guide_legend(title.position="top"))
+  guides(colour = guide_legend(title.position="top"),
+         linetype = guide_legend(override.aes = list(size = 2)))
+
 print(scf_avg_runtime_p)
 
 thread_legend = get_legend(scf_avg_runtime_p)
@@ -272,14 +274,14 @@ if(save_int_figs){
 cat(as.character(Sys.time()), " | Fig11: Combining panels...\n")
 
 top = plot_grid(panel_a, ratite_len_hist, rel_widths=c(0.8,1), ncol=2, labels=c("A", "B"))
-bottom = plot_grid(ratite_scf_dist, scf_avg_loci_p, scf_avg_runtime_p + theme(legend.position="none"), ncol=3, labels=c("D", "E", "F"))
-last_leg = plot_grid(NULL, thread_legend, ncol=2, rel_widths=c(0.8, 0.2))
+bottom = plot_grid(ratite_scf_dist, scf_avg_loci_p, scf_avg_runtime_p + theme(legend.position="none"), ncol=3, labels=c("C", "D", "E"))
+last_leg = plot_grid(NULL, thread_legend, NULL, ncol=3, rel_widths=c(0.75, 0.2, 0.05))
 fig = plot_grid(top, bottom, last_leg, nrow=3, rel_heights=c(1,1,0.2))
 
 print(fig)
 
 if(save_final_fig){
-  figfile = paste(outdir, "fig11.png", sep="")
+  figfile = paste(outdir, "fig11.pdf", sep="")
   cat(as.character(Sys.time()), " | Fig11: Saving figure: ", figfile, "\n")
   ggsave(figfile, fig, width=6.5, height=6, unit="in")
 }
