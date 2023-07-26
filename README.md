@@ -1,4 +1,4 @@
-# Yan-etal-2022 (PhyloAcc-GT)
+# Yan-etal-2023 (PhyloAcc-GT)
 
 Data and scripts for the upcoming publication of [PhyloAcc-GT](https://phyloacc.github.io/).
 
